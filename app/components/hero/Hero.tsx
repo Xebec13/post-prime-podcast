@@ -1,7 +1,6 @@
 import { HeroLogo,HeroEpInfo,HeroEpVideo } from "../index"
 export default function Hero() {
     return (
-
         <section
             id="home"
             className="min-h-screen">
@@ -12,7 +11,7 @@ export default function Hero() {
                 <div className="order-2 lg:order-1">
                     <HeroEpInfo/>
                 </div>
-                <div className="order-1 lg:order-2 col-span-1 lg:col-span-2">
+                <div className="order-1 lg:order-2 col-span-1 lg:col-span-2 w-full">
                     <HeroEpVideo/>
                 </div>
             </div>

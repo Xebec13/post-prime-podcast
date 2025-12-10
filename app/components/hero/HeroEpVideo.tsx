@@ -15,7 +15,7 @@ export default function HeroEpVideo() {
     // 1. Widok Odtwarzacza (po kliknięciu)
     if (isPlaying) {
         return (
-            <div className="size-full min-h-125 overflow-hidden">
+            <div className="size-full min-h-100 overflow-hidden">
                 <iframe
                     width="100%"
                     height="100%"
@@ -36,7 +36,7 @@ export default function HeroEpVideo() {
     return (
         <div
             onClick={() => setIsPlaying(true)}
-            className="relative size-full min-h-125 overflow-hidden cursor-pointer"
+            className="relative size-full min-h-100 overflow-hidden cursor-pointer"
         >
             {/* Zdjęcie (Next/Image dla optymalizacji) */}
             <Image

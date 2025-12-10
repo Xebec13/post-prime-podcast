@@ -21,7 +21,7 @@ export default async function HeroEpInfo() {
     return (
         <div className="size-full flex flex-col justify-between gap-1 p-2 border-current border-b-2 border-t-2">
             <div className="overflow-hidden capitalize">
-                <h2 className="hero-logo text-4xl lg:text-6xl font-semibold leading-tight text-zinc-100 ">
+                <h2 className="text-[clamp(2rem,3.5vw,4rem)] font-semibold leading-tight text-zinc-100 ">
                     {title}
                 </h2>
             </div>
