@@ -3,7 +3,7 @@ export default function Hero() {
     return (
 
         <section
-            id="hero"
+            id="home"
             className="min-h-screen">
             <div className="pt-25">
                 <HeroLogo title="post prime" />
