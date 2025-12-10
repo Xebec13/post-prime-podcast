@@ -4,7 +4,7 @@ export { default as Hero} from "./hero/Hero";
 export { default as HeroLogo} from "./hero/HeroLogo";
 export { default as HeroEpInfo} from "./hero/HeroEpInfo";
 export { default as HeroEpVideo} from "./hero/HeroEpVideo";
-// export { default as About } from "./about/About"
+export { default as About } from "./about/About"
 // export { default as Youtube } from "./youtube/Youtube";
 // export { default as Footer } from "./footer/Footer"
 // export { default as Social } from "./social/Social"

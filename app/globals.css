@@ -8,7 +8,7 @@ body {
 
 @layer utilities {
   h1.hero-logo,
-  h2.hero-logo {
+  h2 {
     font-family: var(--font-bubblegum-sans);
   }
 
