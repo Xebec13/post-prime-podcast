@@ -4,12 +4,12 @@ body {
   @apply bg-neutral-900 text-orange-50;
   font-family: var(--font-inter);
 }
+
+
 @layer utilities {
   h1.hero-logo,
   h2.hero-logo {
     font-family: var(--font-bubblegum-sans);
   }
-
-
 
 }
