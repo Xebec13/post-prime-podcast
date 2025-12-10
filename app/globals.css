@@ -5,7 +5,11 @@ body {
   font-family: var(--font-inter);
 }
 @layer utilities {
-  h1.hero-logo {
+  h1.hero-logo,
+  h2.hero-logo {
     font-family: var(--font-bubblegum-sans);
   }
+
+
+
 }
