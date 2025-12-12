@@ -1,5 +1,4 @@
 export { default as Navbar } from "./navbar/Navbar";
-export { default as NavbarOverlay } from "./navbar/NavbarOverlay";
 export { default as Hero} from "./hero/Hero";
 export { default as HeroLogo} from "./hero/HeroLogo";
 export { default as HeroEpInfo} from "./hero/HeroEpInfo";
