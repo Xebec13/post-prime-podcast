@@ -73,7 +73,7 @@ export default function Navbar() {
             {logoItem && logoItem.imgSrc && (
                 <div className="px-2 lg:px-5 cursor-pointer">
                     <Link href={logoItem.href} aria-label={logoItem.alt}>
-                        <div className="relative size-6 lg:size-8 bg-orange-50 rounded-full flex items-center justify-center">
+                        <div className="relative size-6 bg-orange-50 rounded-full flex items-center justify-center">
                             <Image
                                 src={logoItem.imgSrc}
                                 alt={logoItem.alt}
