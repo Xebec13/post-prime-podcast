@@ -3,7 +3,7 @@ import YoutubeList from "./YoutubeList";
 
 export default function YouTube() {
     return (
-        <section id="youtube" className="w-full bg-neutral-900 py-20 px-5 lg:px-10 border-b border-white/5">
+        <section id="youtube" className="w-full bg-linear-to-b from-transparent via-red-600/10 to-transparent py-20 px-5 lg:px-10">
             {/* Nagłówek Sekcji */}
             <div className="text-right mb-5 border-b border-white/10">
                  <h2 className="text-[clamp(3rem,10vw,8rem)] font-black capitalize">
