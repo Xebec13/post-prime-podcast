@@ -5,6 +5,7 @@ export { default as HeroEpInfo} from "./hero/HeroEpInfo";
 export { default as HeroEpVideo} from "./hero/HeroEpVideo";
 export { default as Subscribe } from "./subscribe/Subscribe"
 export { default as Youtube } from "./youtube/Youtube";
+export { default as Facebook } from "./facebook/Facebook";
 export { default as About } from "./about/About"
 // export { default as Footer } from "./footer/Footer"
 // export { default as Social } from "./social/Social"

@@ -1,4 +1,4 @@
-import { Navbar,Hero,Subscribe,Youtube,About } from "./components"
+import { Navbar,Hero,Subscribe,Youtube,Facebook,About } from "./components"
 export default function Home() {
   return (
     <>
@@ -7,6 +7,7 @@ export default function Home() {
       <Subscribe/>
       <About/>
       <Youtube/>
+      <Facebook/>
     </>
 
   )
