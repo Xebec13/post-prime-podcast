@@ -45,7 +45,7 @@ export default function Subscribe() {
                 <div className="bg-orange-500 text-zinc-50 px-2 py-5 font-bold capitalize text-2xl lg:text-4xl tracking-widest shrink-0">
                     {currentDate}
                 </div>
-                <h3 className="text-5xl font-black capitalize tracking-tighter leading-none">
+                <h3 className="text-5xl md:text-6xl font-black capitalize tracking-tighter leading-none">
                     From the Post Prime Daily
                 </h3>
             </div>
