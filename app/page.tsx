@@ -1,9 +1,10 @@
-import { Hero, Navbar,About } from "./components"
+import { Navbar,Hero,Subscribe,About } from "./components"
 export default function Home() {
   return (
     <>
       <Navbar />
       <Hero />
+      <Subscribe/>
       <About/>
     </>
 
