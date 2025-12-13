@@ -50,7 +50,7 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 z-50 bg-neutral-900 w-full flex items-center justify-between transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
+            className={`fixed top-0 left-0 z-50 border-b bg-neutral-900 w-full flex items-center justify-between transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
                 }`}
         >
             {/* === KONTENER 2: Logo (DIV) === */}
@@ -71,9 +71,9 @@ export default function Navbar() {
                 </div>
             )}
             {/* === KONTENER 1: Linki Tekstowe (UL) === */}
-            <ul className="list-none border-b grid grid-cols-4 w-full">
+            <ul className="list-none  grid grid-cols-4 w-full">
                 {textLinks.map((item, index) => (
-                    <li key={index} className="border-l py-2 text-center cursor-pointer" >
+                    <li key={index} className=" border-r outline- py-2 text-center cursor-pointer" >
                         <Link
                             href={item.href}
                             aria-label={item.alt}
