@@ -8,7 +8,7 @@ export { default as Youtube } from "./youtube/Youtube";
 export { default as Facebook } from "./facebook/Facebook";
 export { default as Instagram } from "./instagram/Instagram";
 export { default as About } from "./about/About"
-// export { default as Footer } from "./footer/Footer"
+export { default as Footer } from "./footer/Footer"
 // export { default as Social } from "./social/Social"
 // export { default as FbSection} from "./FbSection"
 
