@@ -50,14 +50,14 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 z-50 border-b bg-neutral-900 w-full flex items-center justify-between transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
+            className={`fixed top-0 left-0 z-50 bg-orange-50 text-inherit w-full p-3 flex items-center justify-between border-slate-900 border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
                 }`}
         >
             {/* === KONTENER 2: Logo (DIV) === */}
             {logoItem && logoItem.imgSrc && (
-                <div className="px-2 lg:px-5 cursor-pointer">
+                <div className="cursor-pointer shrink-0 pr-4">
                     <Link href={logoItem.href} aria-label={logoItem.alt}>
-                        <div className="relative size-6 bg-orange-50 rounded-full flex items-center justify-center">
+                        <div className="relative size-8 rounded-full flex items-center justify-center">
                             <Image
                                 src={logoItem.imgSrc}
                                 alt={logoItem.alt}
@@ -71,13 +71,13 @@ export default function Navbar() {
                 </div>
             )}
             {/* === KONTENER 1: Linki Tekstowe (UL) === */}
-            <ul className="list-none  grid grid-cols-4 w-full">
+            <ul className="list-none grid grid-cols-4 w-full">
                 {textLinks.map((item, index) => (
-                    <li key={index} className=" border-r outline- py-2 text-center cursor-pointer" >
+                    <li key={index} className="border-l-2 text-center cursor-pointer" >
                         <Link
                             href={item.href}
                             aria-label={item.alt}
-                            className="text-white font-black uppercase whitespace-nowrap tracking-widest text-[clamp(0.6rem,0.8vw,1rem)]"
+                            className=" font-black uppercase whitespace-nowrap tracking-widest text-[clamp(0.6rem,0.8vw,1rem)]"
                         >
                             {item.label}
                         </Link>

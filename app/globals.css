@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-neutral-900 text-orange-50;
+  @apply bg-orange-50 text-slate-800;
   font-family: var(--font-inter);
 }
 

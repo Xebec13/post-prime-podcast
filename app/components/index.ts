@@ -1,8 +1,5 @@
 export { default as Navbar } from "./navbar/Navbar";
 export { default as Hero} from "./hero/Hero";
-export { default as HeroLogo} from "./hero/HeroLogo";
-export { default as HeroEpInfo} from "./hero/HeroEpInfo";
-export { default as HeroEpVideo} from "./hero/HeroEpVideo";
 export { default as Subscribe } from "./subscribe/Subscribe"
 export { default as Youtube } from "./youtube/Youtube";
 export { default as Facebook } from "./facebook/Facebook";
