@@ -4,7 +4,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <Subscribe/>
+      {/* <Subscribe/> */}
       <About/>
       <Youtube/>
       <Facebook/>
