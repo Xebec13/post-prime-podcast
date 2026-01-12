@@ -1,3 +1,5 @@
+import Icon from "../ui/Icon";
+
 interface HeroEpInfoProps {
     title: string;
     statistics: {
@@ -16,21 +18,21 @@ export default function HeroEpInfo({ title, statistics }: HeroEpInfoProps) {
                 </h2>
             </div>
 
-            <div className="self-end flex flex-wrap gap-4 text-sm font-medium">
-                <div className="flex items-center gap-1">
-                    <span>ikona</span>
+            <div className="self-end inline-flex gap-3 text-sm font-medium">
+                <div className="inline-flex justify-center items-center gap-1.5 p-1">
+                    <span><Icon name="Like" size={12} /></span>
                     <p>
                         {Number(statistics.viewCount).toLocaleString()}
                     </p>
                 </div>
-                <div className="flex items-center gap-1">
-                    <span>ikona</span>
+                <div className="inline-flex justify-center items-center gap-1.5 p-1">
+                    <span><Icon name="View" size={12} /></span>
                     <p>
                         {Number(statistics.likeCount).toLocaleString()}
                     </p>
                 </div>
-                <div className="flex items-center gap-1">
-                    <span>ikona</span>
+                <div className="inline-flex justify-center items-center gap-1.5 p-1">
+                    <span><Icon name="Comment" size={12} /></span>
                     <p>
                         {Number(statistics.commentCount).toLocaleString()}
                     </p>

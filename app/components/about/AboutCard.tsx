@@ -10,14 +10,14 @@ interface Host {
 
 interface AboutCardProps {
     host: Host;
-    showSeparator: boolean;
+    
 }
 
-export default function AboutCard({ host, showSeparator }: AboutCardProps) {
+export default function AboutCard({ host }: AboutCardProps) {
     
    
     return (
-        <div className="relative group flex flex-col items-center justify-center gap-2 py-3 px-5 lg:py-5 lg:px-10">
+        <div className="relative w-full h-full min-w-sm max-w-3/4 lg:min-w-md lg:max-w-full flex flex-col items-center justify-center gap-2 py-3 px-5 lg:py-5 lg:px-10">
 
             {/* Miejsce na zdjęcie (hostImg) */}
             <div
@@ -52,10 +52,6 @@ export default function AboutCard({ host, showSeparator }: AboutCardProps) {
                 </p>
             </div>
 
-            {/* === SEPARATOR (DIVIDER) === */}
-            {showSeparator && (
-                <div className="hidden lg:block absolute -right-5 top-1/2 -translate-y-1/2 w-0.5 h-full bg-neutral-600/50" />
-            )}
         </div>
     );
 }

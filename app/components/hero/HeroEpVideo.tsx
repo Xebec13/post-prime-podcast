@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Icon from "../ui/Icon";
 import Image from "next/image";
 
 interface HeroEpVideoProps {
@@ -14,7 +15,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
     // 1. Widok Odtwarzacza (po kliknięciu)
     if (isPlaying) {
         return (
-            <div className="size-full min-h-100 overflow-hidden rounded-lg">
+            <div className="size-full min-h-100 overflow-hidden">
                 <iframe
                     width="100%"
                     height="100%"
@@ -24,7 +25,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
-                ></iframe>
+                />
             </div>
         );
     }
@@ -34,7 +35,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
         <div
             onClick={() => setIsPlaying(true)}
             // Kontener z tłem potrzebnym do efektu mix-blend (zamiast #faaa00 użyłem orange-500 dla spójności)
-            className="relative size-full min-h-100 overflow-hidden cursor-pointer group rounded-lg border-2"
+            className="relative size-full min-h-100 border-2 border-black overflow-hidden cursor-pointer group "
         >
             {/* Zdjęcie z efektem mix-blend-darken */}
             <Image
@@ -42,20 +43,14 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
                 alt="Ostatni odcinek - miniaturka"
                 fill
                 sizes="(max-width: 1020px) 100vw, 50vw"
-                className="mix-blend-darken"
+                className="object-cover object-center brightness-50"
                 priority
             />
 
             {/* Przycisk Play (Absolute Center) */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="size-20 lg:size-24 bg-orange-300 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                    <svg 
-                        className="w-8 h-8 lg:w-10 lg:h-10 text-slate-950 ml-1" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
+                <div className="p-10 bg-orange-300 rounded-full shadow-xl">
+                    <Icon name="Play" size={24} className="text-black "/>
                 </div>
             </div>
         </div>

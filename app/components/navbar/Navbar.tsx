@@ -50,12 +50,12 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 z-50 bg-orange-50 text-inherit w-full p-3 flex items-center justify-between border-slate-900 border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
+            className={`fixed top-0 left-0 z-50 bg-orange-50 text-inherit w-full py-1.5 flex items-center justify-between border-slate-900 border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
                 }`}
         >
             {/* === KONTENER 2: Logo (DIV) === */}
             {logoItem && logoItem.imgSrc && (
-                <div className="cursor-pointer shrink-0 pr-4">
+                <div className="cursor-pointer shrink-0 px-3">
                     <Link href={logoItem.href} aria-label={logoItem.alt}>
                         <div className="relative size-8 rounded-full flex items-center justify-center">
                             <Image
@@ -71,9 +71,9 @@ export default function Navbar() {
                 </div>
             )}
             {/* === KONTENER 1: Linki Tekstowe (UL) === */}
-            <ul className="list-none grid grid-cols-4 w-full">
+            <ul className="list-none grid grid-cols-4 w-full ">
                 {textLinks.map((item, index) => (
-                    <li key={index} className="border-l-2 text-center cursor-pointer" >
+                    <li key={index} className="border-l-2  text-center cursor-pointer" >
                         <Link
                             href={item.href}
                             aria-label={item.alt}

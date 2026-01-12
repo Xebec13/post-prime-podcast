@@ -34,13 +34,13 @@ export default function YoutubeList() {
                         {/* === SEPARATORY SIATKI === */}
 
                         {/* 1. LINIA PIONOWA (PO PRAWEJ) */}
-                        <div className={`absolute -right-3 lg:-right-4 top-4 bottom-4 w-0.5 bg-zinc-100/20
+                        <div className={`absolute -right-3 lg:-right-4 top-4 bottom-4 w-0.5 bg-black
                             ${showRightBase ? 'block' : 'hidden'} 
                             ${showRightLg ? 'lg:block' : 'lg:hidden'}
                         `} />
 
                         {/* 2. LINIA POZIOMA (NA DOLE) */}
-                        <div className={`absolute -bottom-3 lg:-bottom-4 left-4 right-4 h-0.5 bg-zinc-100/20
+                        <div className={`absolute -bottom-3 lg:-bottom-4 left-4 right-4 h-0.5 bg-black
                             ${showBottomBase ? 'block' : 'hidden'}
                             ${showBottomLg ? 'lg:block' : 'lg:hidden'}
                         `} />
