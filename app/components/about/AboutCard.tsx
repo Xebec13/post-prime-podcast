@@ -17,15 +17,15 @@ export default function AboutCard({ host }: AboutCardProps) {
     
    
     return (
-        <div className="relative w-full h-full min-w-sm max-w-3/4 lg:min-w-md lg:max-w-full flex flex-col items-center justify-center gap-2 py-3 px-5 lg:py-5 lg:px-10">
+        <div className="relative size-full min-w-20 max-w-lg lg:min-w-xs lg:max-w-full space-y-3">
 
             {/* Miejsce na zdjęcie (hostImg) */}
             <div
                 style={{
                     backgroundImage: `url(${host.hostBg})`
                 }}
-                // ZMIANA 1: Dodałem border-2 oraz dynamiczny kolor ramki
-                className={`grid place-items-center w-full max-w-3/4 lg:max-w-full aspect-square  overflow-hidden bg-cover bg-center bg-no-repeat`}
+                
+                className={`grid place-items-center w-full  aspect-square  overflow-hidden bg-cover bg-center bg-no-repeat`}
             >
                 
                 <div 
@@ -44,10 +44,10 @@ export default function AboutCard({ host }: AboutCardProps) {
             </div>
 
             {/* Podpis pod zdjęciem */}
-            <div className="text-left w-full max-w-3/4 lg:max-w-full">
-                <h3 className="text-lg lg:text-2xl font-bold uppercase">{host.name}</h3>
+            <div className="text-left w-full ">
+                <h3 className="text-md lg:text-2xl font-bold uppercase">{host.name}</h3>
                 {/* Tekst pozostaje bez zmian (orange-300) */}
-                <p className="text-orange-300 font-medium uppercase tracking-widest text-xs lg:text-sm mt-1">
+                <p className="text-orange-300 font-medium uppercase tracking-widest text-[10px] lg:text-sm">
                     {host.role}
                 </p>
             </div>

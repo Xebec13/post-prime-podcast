@@ -10,7 +10,7 @@ export default function FacebookLastPost() {
     };
 
     return (
-        <div className="w-full flex flex-col text-orange-50">
+        <div className="w-full flex flex-col">
            
             {/* Grid: 1 kolumna mobile, 3 kolumny desktop */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-10 items-start">
@@ -22,7 +22,7 @@ export default function FacebookLastPost() {
                    - min-h-[300px]
                    - lg:max-h-[50vh] -> ograniczenie wysokości na desktopie, żeby nie było gigantyczne
                 */}
-                <div className="lg:col-span-2 relative w-full aspect-square min-h-[250px] max-h-[400px] lg:max-h-[60vh] border border-neutral-100/20 bg-black overflow-hidden">
+                <div className="lg:col-span-2 relative w-full aspect-square min-h-62 max-h-100 lg:max-h-[60vh] border border-neutral-100/20 bg-black overflow-hidden">
                     <Image
                         src={lastPost.image}
                         alt="Latest Facebook Post"

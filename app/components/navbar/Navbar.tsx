@@ -55,7 +55,7 @@ export default function Navbar() {
         >
             {/* === KONTENER 2: Logo (DIV) === */}
             {logoItem && logoItem.imgSrc && (
-                <div className="cursor-pointer shrink-0 px-3">
+                <div className="cursor-pointer shrink-0 px-1.5 lg:px-3">
                     <Link href={logoItem.href} aria-label={logoItem.alt}>
                         <div className="relative size-8 rounded-full flex items-center justify-center">
                             <Image
@@ -73,11 +73,11 @@ export default function Navbar() {
             {/* === KONTENER 1: Linki Tekstowe (UL) === */}
             <ul className="list-none grid grid-cols-4 w-full ">
                 {textLinks.map((item, index) => (
-                    <li key={index} className="border-l-2  text-center cursor-pointer" >
+                    <li key={index} className="border-l-2 text-[clamp(0.55rem,0.8vw,1rem)] text-center cursor-pointer" >
                         <Link
                             href={item.href}
                             aria-label={item.alt}
-                            className=" font-black uppercase whitespace-nowrap tracking-widest text-[clamp(0.6rem,0.8vw,1rem)]"
+                            className=" font-black uppercase whitespace-nowrap tracking-widest"
                         >
                             {item.label}
                         </Link>

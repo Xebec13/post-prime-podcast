@@ -28,13 +28,13 @@ export default function FacebookPostList() {
                         {/* === SEPARATORY === */}
 
                         {/* PIONOWA */}
-                        <div className={`absolute -right-3 lg:-right-4 top-4 bottom-4 w-0.5 bg-zinc-100/20
+                        <div className={`absolute -right-3 lg:-right-4 top-4 bottom-4 w-0.5 bg-neutral-950/40
                             ${showRightBase ? 'block' : 'hidden'} 
                             ${showRightLg ? 'lg:block' : 'lg:hidden'}
                         `} />
 
                         {/* POZIOMA */}
-                        <div className={`absolute -bottom-3 lg:-bottom-4 left-4 right-4 h-0.5 bg-zinc-100/20
+                        <div className={`absolute -bottom-3 lg:-bottom-4 left-4 right-4 h-0.5 bg-neutral-950/40
                             ${showBottomBase ? 'block' : 'hidden'}
                             ${showBottomLg ? 'lg:block' : 'lg:hidden'} 
                         `} />
@@ -53,7 +53,7 @@ export default function FacebookPostList() {
 
                         {/* Tekst i Statystyki */}
                         <div className="flex flex-col gap-3">
-                            <p className="text-sm text-neutral-300 font-serif leading-relaxed line-clamp-3 group-hover:text-white transition-colors">
+                            <p className="text-sm font-serif leading-relaxed line-clamp-3 group-hover:text-blue-500 transition-colors">
                                 {post.content}
                             </p>
 

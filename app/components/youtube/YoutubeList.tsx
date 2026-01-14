@@ -29,7 +29,7 @@ export default function YoutubeList() {
                 return (
                     <div 
                         key={video.id} 
-                        className="relative flex flex-col gap-3 p-5 group cursor-pointer hover:bg-white/5 transition-colors duration-500"
+                        className="relative flex flex-col gap-3 group cursor-pointer hover:bg-white/5 transition-colors duration-500"
                     >
                         {/* === SEPARATORY SIATKI === */}
 
@@ -49,7 +49,7 @@ export default function YoutubeList() {
                         {/* === TREŚĆ KAFELKA === */}
                         
                         {/* Miniaturka */}
-                        <div className="relative w-full aspect-video overflow-hidden border border-white/10 bg-black">
+                        <div className="relative w-full aspect-video overflow-hidden border border-white/10 bg-black brightness-50">
                             <Image
                                 src={video.thumbnail}
                                 alt={video.title}
@@ -61,7 +61,7 @@ export default function YoutubeList() {
 
                         {/* Dane filmu */}
                         <div className="flex flex-col gap-1 mt-1">
-                            <h4 className="text-base font-bold text-current leading-tight uppercase line-clamp-2 group-hover:text-red-500 transition-colors">
+                            <h4 className="text-base font-bold text-current leading-tight uppercase line-clamp-2 group-hover:text-orange-500 transition-colors">
                                 {video.title}
                             </h4>
                             <div className="flex gap-3 text-xs font-medium text-neutral-500 uppercase tracking-wider">

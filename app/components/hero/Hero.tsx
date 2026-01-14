@@ -19,7 +19,7 @@ export default async function Hero() {
         <section
             id="home"
             className="min-h-screen">
-            <div className="pt-25">
+            <div className="pt-18 lg:pt-25">
                 <HeroLogo title="post prime" />
             </div>
             <div className="min-h-screen grid grid-cols-1 lg:grid-cols-3 place-items-stretch gap-5 p-5 lg:p-10">

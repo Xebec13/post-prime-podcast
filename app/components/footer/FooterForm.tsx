@@ -38,7 +38,7 @@ export default function SubscribeForm() {
                 placeholder="Imię"
                 value={formData.name}
                 onChange={handleChange}
-                className="p-2  outline-none bg-orange-200/80 uppercase"
+                className="p-2 outline-none bg-orange-200"
                 required
             />
             <input
@@ -47,7 +47,7 @@ export default function SubscribeForm() {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="p-2  outline-none bg-orange-200/80 uppercase"
+                className="p-2 outline-none bg-orange-200"
                 required
             />
         </form>

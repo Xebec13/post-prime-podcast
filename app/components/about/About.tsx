@@ -26,17 +26,17 @@ const hosts = [
 
 export default function About() {
     return (
-        <section id="about" className="min-h-screen w-screen py-10 px-5 lg:px-10 bg-neutral-900 text-orange-50">
+        <section id="about" className="lg:min-h-screen w-screen flex flex-col justify-center items-center gap-3 py-5 px-5 lg:px-10 bg-neutral-900 text-orange-50">
 
             {/* Nagłówek Sekcji */}
-            <div className="text-left">
+            <div className="text-left w-full">
                 <h2 className="text-[clamp(3rem,11vw,12rem)] border-b-2 font-black tracking-tighter">
                     Autorzy
                 </h2>
             </div>
 
             {/* Grid 3 kolumny */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-2 pb-5">
+            <div className="w-full grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
                 {hosts.map((host) => (
                     <AboutCard 
                         key={host.id} 
