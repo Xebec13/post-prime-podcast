@@ -1,7 +1,10 @@
 @import "tailwindcss";
-
+:root {
+  scroll-behavior: smooth;
+}
 body {
   @apply bg-orange-50 text-neutral-900;
+  
   font-family: var(--font-inter);
 }
 

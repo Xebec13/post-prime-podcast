@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useNavbarLogic } from "./useNavbarLogic"; // Import hooka
 
 type NavItem = {
     type: "logo" | "link";
@@ -13,7 +13,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-    { type: "link", href: "#about", label: "Hosts", alt: "Want to know more about us ?" },
+    { type: "link", href: "#about", label: "Autorzy", alt: "Want to know more about us ?" },
     { type: "link", href: "#youtube", label: "Youtube", alt: "Watch our latest videos" },
     { type: "link", href: "#facebook", label: "Facebook", alt: "Read our latest posts" },
     { type: "link", href: "#instagram", label: "Instagram", alt: "See recent news" },
@@ -21,71 +21,78 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    useEffect(() => {
-        const controlNavbar = () => {
-            const currentScrollY = window.scrollY;
-
-            if (currentScrollY > lastScrollY && currentScrollY > 10) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-
-            setLastScrollY(currentScrollY);
-        };
-
-        // ZMIANA: Dodano { passive: true } dla lepszej wydajności scrollowania
-        window.addEventListener("scroll", controlNavbar, { passive: true });
-
-        return () => {
-            window.removeEventListener("scroll", controlNavbar);
-        };
-    }, [lastScrollY]);
+    // Cała logika siedzi w hooku
+    const { isVisible, activeStyle, currentStyleIndex, setHoverIndex } = useNavbarLogic();
 
     const textLinks = navItems.filter(item => item.type === "link");
     const logoItem = navItems.find(item => item.type === "logo");
 
     return (
         <nav
-            className={`fixed top-0 left-0 z-50 bg-orange-50 text-inherit w-full py-1.5 flex items-center justify-between border-slate-900 border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
-                }`}
+            className={`fixed top-0 left-0 z-50 w-full bg-orange-50 text-inherit border-slate-900 border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
         >
-            {/* === KONTENER 2: Logo (DIV) === */}
-            {logoItem && logoItem.imgSrc && (
-                <div className="cursor-pointer shrink-0 px-1.5 lg:px-3">
-                    <Link href={logoItem.href} aria-label={logoItem.alt}>
-                        <div className="relative size-8 rounded-full flex items-center justify-center">
-                            <Image
-                                src={logoItem.imgSrc}
-                                alt={logoItem.alt}
-                                width={40}
-                                height={40}
-                                className="object-contain p-0.5"
-                                priority
-                            />
-                        </div>
-                    </Link>
-                </div>
-            )}
-            {/* === KONTENER 1: Linki Tekstowe (UL) === */}
-            <ul className="list-none grid grid-cols-4 w-full ">
-                {textLinks.map((item, index) => (
-                    <li key={index} className="border-l-2 text-[clamp(0.55rem,0.8vw,1rem)] text-center cursor-pointer" >
+            <ul
+                onMouseLeave={() => setHoverIndex(null)}
+                className="relative list-none grid grid-cols-[1fr_repeat(4,2fr)] place-items-center py-1 size-full isolate"
+            >
+                {/* BLOB */}
+                <div
+                    className={`absolute top-0 bottom-0 left-0 -z-10 h-full transition-all duration-500 ease-in-out origin-left ${activeStyle.color}`}
+                    style={{
+                        width: "11.111%",
+                        transform: `translateX(${activeStyle.translateX}) scaleX(${activeStyle.scaleX})`
+                    }}
+                />
+                
+                {/* === LOGO === */}
+                {logoItem && logoItem.imgSrc && (
+                    <li
+                        onMouseEnter={() => setHoverIndex(0)}
+                        className="cursor-pointer size-full z-10 p-0"
+                    >
                         <Link
-                            href={item.href}
-                            aria-label={item.alt}
-                            className=" font-black uppercase whitespace-nowrap tracking-widest"
+                            href={logoItem.href}
+                            aria-label={logoItem.alt}
+                            className="w-full h-full flex items-center justify-center"
                         >
-                            {item.label}
+                            <div className="relative bg-orange-50 size-8 rounded-full flex items-center justify-center">
+                                <Image
+                                    src={logoItem.imgSrc}
+                                    alt={logoItem.alt}
+                                    width={40}
+                                    height={40}
+                                    className="object-contain p-0.5"
+                                    priority
+                                />
+                            </div>
                         </Link>
                     </li>
-                ))}
+                )}
+
+                {/* === LINKI === */}
+                {textLinks.map((item, index) => {
+                    const myIndex = index + 1;
+                    const isHighlighted = currentStyleIndex === myIndex;
+
+                    return (
+                        <li
+                            key={index}
+                            onMouseEnter={() => setHoverIndex(myIndex)}
+                            className="size-full border-slate-900 border-l-2 cursor-pointer z-10"
+                        >
+                            <Link
+                                href={item.href}
+                                aria-label={item.alt}
+                                className={`w-full h-full flex items-center justify-center font-black uppercase whitespace-nowrap tracking-widest text-[clamp(0.55rem,0.8vw,1rem)] transition-colors duration-200 
+                                    ${isHighlighted ? activeStyle.textColor : "hover:text-white text-inherit"}`}
+                            >
+                                {item.label}
+                            </Link>
+                        </li>
+                    );
+                })}
+
             </ul>
-
-
         </nav>
     );
 }
