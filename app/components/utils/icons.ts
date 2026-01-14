@@ -1,4 +1,5 @@
 import { 
+    FaArrowRight,
     FaPlay, 
     FaEye, 
     FaThumbsUp, 
@@ -10,6 +11,7 @@ import {
 
 
 export const iconMap = {
+    ArrowRight:FaArrowRight,
     Play: FaPlay,
     View: FaEye,
     Like: FaThumbsUp,

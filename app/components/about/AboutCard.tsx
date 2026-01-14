@@ -45,9 +45,9 @@ export default function AboutCard({ host }: AboutCardProps) {
 
             {/* Podpis pod zdjęciem */}
             <div className="text-left w-full ">
-                <h3 className="text-md lg:text-2xl font-bold uppercase">{host.name}</h3>
+                <h3 className="text-lg lg:text-2xl font-bold uppercase">{host.name}</h3>
                 {/* Tekst pozostaje bez zmian (orange-300) */}
-                <p className="text-orange-300 font-medium uppercase tracking-widest text-[10px] lg:text-sm">
+                <p className="text-xs lg:text-sm text-orange-300 font-medium uppercase tracking-widest">
                     {host.role}
                 </p>
             </div>

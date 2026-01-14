@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-// Stałe konfiguracyjne przeniesione tutaj
 export const SPOTLIGHT_CONFIG = [
     { id: 0, color: "bg-orange-500", textColor: "text-inherit", translateX: "0%", scaleX: 1 },
     { id: 1, color: "bg-neutral-800", textColor: "text-orange-50", translateX: "100%", scaleX: 2 },
@@ -19,21 +18,28 @@ const SECTION_MAP: Record<string, number> = {
 
 export function useNavbarLogic() {
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+    
+    // ZMIANA: Używamy useRef zamiast useState dla lastScrollY
+    // Dzięki temu nie resetujemy useEffect przy każdym pixelu scrolla
+    const lastScrollYRef = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            
+            const lastScrollY = lastScrollYRef.current; // Odczytujemy aktualną wartość z refa
+
             // 1. Chowanie/pokazywanie navbara
+            // Dodano warunek (currentScrollY > 10), żeby na samej górze navbar był zawsze widoczny
             if (currentScrollY > lastScrollY && currentScrollY > 10) {
                 setIsVisible(false);
             } else {
                 setIsVisible(true);
             }
-            setLastScrollY(currentScrollY);
+            
+            // Aktualizujemy refa na koniec
+            lastScrollYRef.current = currentScrollY;
 
             // 2. Śledzenie sekcji (Active Section)
             const viewportMiddle = currentScrollY + (window.innerHeight / 3);
@@ -58,17 +64,20 @@ export function useNavbarLogic() {
 
         window.addEventListener("scroll", handleScroll, { passive: true });
         handleScroll(); // Initial check
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
 
-    // Obliczamy aktywny styl
+        return () => window.removeEventListener("scroll", handleScroll);
+        
+        // ZMIANA: Pusta tablica zależności []
+        // Efekt uruchamia się raz, a handleScroll ma dostęp do świeżego lastScrollY dzięki useRef
+    }, []);
+
     const currentStyleIndex = hoverIndex !== null ? hoverIndex : activeIndex;
     const activeStyle = SPOTLIGHT_CONFIG[currentStyleIndex];
 
     return {
         isVisible,
-        activeStyle,    // Obiekt ze stylami (color, translate, scale...)
-        currentStyleIndex, // Indeks (potrzebny do porównania z linkiem)
-        setHoverIndex   // Funkcja do obsługi onMouseEnter/Leave
+        activeStyle,
+        currentStyleIndex,
+        setHoverIndex
     };
 }
