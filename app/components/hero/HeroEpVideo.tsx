@@ -49,7 +49,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
 
             {/* Przycisk Play (Absolute Center) */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="p-5 lg:p-10 bg-orange-300 rounded-full shadow-xl">
+                <div className="py-5 px-10 bg-orange-500/90 rounded-lg  shadow-xl">
                     <Icon name="Play" className="text-black size-4 lg:size-8" />
                 </div>
             </div>

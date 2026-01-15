@@ -12,10 +12,10 @@ interface HeroEpInfoProps {
 export default function HeroEpInfo({ title, statistics }: HeroEpInfoProps) {
     return (
         <div className="size-full text-inherit flex flex-col justify-between gap-1 p-2 border-current border-b-2 border-t-2">
-            <div className="overflow-hidden capitalize">
-                <h2 className="text-[clamp(2rem,3.5vw,4rem)] font-semibold leading-tight">
+            <div className="overflow-hidden">
+                <p className="text-[clamp(2rem,3.5vw,4rem)] font-semibold leading-tight">
                     {title}
-                </h2>
+                </p>
             </div>
 
             <div className="self-end inline-flex gap-3 text-sm font-medium">

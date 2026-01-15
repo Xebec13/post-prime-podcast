@@ -35,7 +35,7 @@ export default function FacebookLastPost() {
                 {/* 2. TREŚĆ POSTA (1/3 szerokości) */}
                 <div className="flex flex-col justify-center gap-6 py-4 h-full">
                     {/* Tekst posta */}
-                    <p className="text-lg md:text-xl font-medium leading-relaxed  font-serif">
+                    <p className="text-lg md:text-xl font-medium leading-relaxed">
                         {lastPost.content}
                     </p>
 
@@ -49,7 +49,7 @@ export default function FacebookLastPost() {
                                 💬 {lastPost.comments} Comments
                             </span>
                         </div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+                        <span className="text-xs font-bold uppercase tracking-widest text-neutral-900">
                             Posted {lastPost.date}
                         </span>
                     </div>

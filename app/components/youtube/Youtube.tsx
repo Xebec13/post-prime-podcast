@@ -1,25 +1,34 @@
 import YoutubePlayer from "./YoutubePlayer";
 import YoutubeList from "./YoutubeList";
 
+
 export default function YouTube() {
     return (
-        <section id="youtube" className="w-full bg-inherit py-10 px-5 lg:px-10 lg:py-15">
+        // Dodałem 'relative' do sekcji dla pozycjonowania przycisku desktopowego
+        <section id="youtube" className="w-full py-15">
+
             {/* Nagłówek Sekcji */}
-            <div className="text-right w-full border-b-2">
-                <h2 className="text-[clamp(3rem,10vw,8rem)] border-b font-black ">
+            <div className="text-right mb-5 border-b-2 px-10">
+                <h2 className="text-[clamp(3rem,10vw,8rem)] font-black capitalize">
                     <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-500">Youtube</span>
                 </h2>
             </div>
+            <div
+                className="space-y-5">
+                {/* 1. Główny Player */}
+                <div
+                    className="mb-5 lg:mb-10 px-10 ">
+                    <YoutubePlayer />
+                </div>
+                {/* 2. Lista Filmów */}
+                <div
+                    // style={{
+                    //     backgroundImage: `url(postprime-logo-2.png)`,
+                    // }}
+                    className="px-10 ">
+                    <YoutubeList />
+                </div>
 
-            {/* 1. Główny Player (Pełna szerokość) */}
-            <div className="pt-10">
-                <YoutubePlayer />
-
-            </div>
-
-            {/* 2. Lista Filmów (Grid 3 kolumny) */}
-            <div className="px-3">
-                <YoutubeList />
             </div>
 
         </section>

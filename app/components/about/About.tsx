@@ -66,12 +66,11 @@ export default function About() {
                         <Icon name="ArrowRight" className="text-sm" />
                     </div>
                 </div>
-
             </div>
 
             {/* === WERSJA DESKTOP (Absolutna) === */}
             {/* Widoczna tylko na ekranach >= lg. Pozycjonowana w rogu sekcji. */}
-            <div className="hidden lg:inline-flex items-center gap-1 absolute bottom-5 right-10 text-gray-200 bg-orange-500 px-4 py-1.5 rounded-md hover:bg-orange-600 transition-colors cursor-pointer">
+            <div className="hidden lg:inline-flex items-center gap-1 absolute bottom-5 right-10 text-gray-200 bg-orange-500 px-4 py-1.5 rounded-md  cursor-pointer">
                 <AboutLink className="text-sm" text="Więcej o nas" />
                 {/* Upewnij się, że "ArrowRight" istnieje w Twoim utils/icons.ts, jeśli nie - dodaj go */}
                 <Icon name="ArrowRight" className="text-xs" />

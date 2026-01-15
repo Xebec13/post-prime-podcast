@@ -13,7 +13,7 @@ const fbPosts = Array.from({ length: 6 }).map((_, i) => ({
 export default function FacebookPostList() {
     return (
         // Grid: startujemy od grid-cols-2 (bez mobile grid-cols-1), potem lg:grid-cols-3
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-orange-50">
             {fbPosts.map((post, index) => {
                 const showRightBase = (index + 1) % 2 !== 0;
                 const showRightLg = (index + 1) % 3 !== 0;
@@ -23,7 +23,7 @@ export default function FacebookPostList() {
                 return (
                     <div
                         key={post.id}
-                        className="relative flex flex-col gap-4 p-5 group cursor-pointer hover:bg-white/5 transition-colors duration-500"
+                        className="relative flex flex-col gap-4 p-5 group cursor-pointer"
                     >
                         {/* === SEPARATORY === */}
 
@@ -42,23 +42,23 @@ export default function FacebookPostList() {
                         {/* === TREŚĆ === */}
 
                         {/* Zdjęcie (Kwadratowe) */}
-                        <div className="relative w-full aspect-square border border-neutral-100/20 bg-black overflow-hidden">
+                        <div className="relative w-full aspect-square bg-black overflow-hidden">
                             <Image
                                 src={post.image}
                                 alt="Post thumbnail"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                                className="object-cover "
                             />
                         </div>
 
                         {/* Tekst i Statystyki */}
-                        <div className="flex flex-col gap-3">
-                            <p className="text-sm font-serif leading-relaxed line-clamp-3 group-hover:text-blue-500 transition-colors">
+                        <div className="flex flex-col gap-3 ">
+                            <p className="text-sm leading-relaxed line-clamp-3 ">
                                 {post.content}
                             </p>
 
-                            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-500 mt-1">
-                                <div className="flex gap-3 group-hover:text-blue-500 transition-colors">
+                            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-white mt-1">
+                                <div className="flex gap-3 ">
                                     <span>👍 {post.likes}</span>
                                     <span>💬 {post.comments}</span>
                                 </div>
