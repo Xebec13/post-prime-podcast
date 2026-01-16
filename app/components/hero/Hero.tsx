@@ -1,4 +1,3 @@
-import HeroLogo from "./HeroLogo";
 import HeroEpInfo from "./HeroEpInfo"; // Import bezpośredni (chyba że wolisz z index)
 import HeroEpVideo from "./HeroEpVideo";
 // import { getLatestVideoDetails } from "../utils/youtube";
@@ -18,20 +17,18 @@ export default async function Hero() {
     return (
         <section
             id="home"
-            className="min-h-screen">
-            <div className="pt-18 lg:pt-25">
-                <HeroLogo title="post prime" />
-            </div>
-            <div className="min-h-screen grid grid-cols-1 lg:grid-cols-3 place-items-stretch gap-5 p-5 lg:p-10">
+            className="min-h-screen bg-orange-50">
+            
+            {/* <div className="min-h-screen grid grid-cols-1 lg:grid-cols-3 place-items-stretch gap-5 p-5 lg:p-10">
                 <div className="order-2 lg:order-1">
-                    {/* Przekazanie danych do Info */}
+                    
                     <HeroEpInfo title={video.title} statistics={video.statistics} />
                 </div>
                 <div className="order-1 lg:order-2 col-span-1 lg:col-span-2 w-full">
-                    {/* Przekazanie danych do Video */}
+                    
                     <HeroEpVideo videoId={video.videoId} thumbnail={video.thumbnail} />
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 }

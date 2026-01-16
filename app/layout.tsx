@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Bubblegum_Sans, Inter } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
 
 
-const bubblegumSans = Bubblegum_Sans({
-  variable: "--font-bubblegum-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   weight: "400"
 })
+
 const inter = Inter({
   variable: "--font-inter",
   weight: "400"
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bubblegumSans.variable} ${inter.variable} antialiased`}
+        className={`${archivo.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>
