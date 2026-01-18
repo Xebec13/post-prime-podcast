@@ -26,15 +26,15 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`font-archivo fixed top-0 left-0 z-50 w-full bg-orange-50 text-inherit border-b-2 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+            className={`font-archivo fixed top-0 left-0 z-50 w-full h-10 bg-orange-50 text-inherit outline-2 transition-transform duration-500 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
         >
             <ul
                 onMouseLeave={() => setHoverIndex(null)}
-                className="relative list-none grid grid-cols-[repeat(5,1fr)_0.5fr] place-items-center size-full isolate"
+                className="relative list-none grid grid-cols-[repeat(5,1fr)_0.5fr] size-full isolate"
             >
                 {/* BLOB (Teraz zawsze czarny - bg-neutral-900) */}
                 <div
-                    className={`absolute top-0 bottom-0 left-0 -z-10 h-full transition-all duration-500 ease-in-out origin-left ${activeStyle.color}`}
+                    className={`absolute top-0 bottom-0 left-0 -z-10 h-full transition-[transform,colors] duration-500 ease-in-out origin-left ${activeStyle.color}`}
                     style={{
                         width: "18.1818%",
                         transform: `translateX(${activeStyle.translateX}) scaleX(${activeStyle.scaleX})`
@@ -50,7 +50,7 @@ export default function Navbar() {
                         <li
                             key={index}
                             onMouseEnter={() => setHoverIndex(myIndex)}
-                            className="text-[clamp(0.6rem,1vw,1rem)] size-full border-l-2 py-1.5 cursor-pointer z-10"
+                            className="text-[clamp(0.6rem,1vw,1rem)] border-r size-full cursor-pointer z-10"
                         >
                             <Link
                                 href={item.href}

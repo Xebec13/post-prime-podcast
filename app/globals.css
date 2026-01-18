@@ -7,11 +7,29 @@ body {
   font-family: var(--font-inter);
 }
 
-
 @layer utilities {
+  h1,
+  h2,
   .font-archivo,
   .about-link {
     font-family: var(--font-archivo);
   }
 
+  /* == Marquee (Infinite Loop) == */
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 40s linear infinite;
+    transform-origin: left;
+    will-change: transform;
+    
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }

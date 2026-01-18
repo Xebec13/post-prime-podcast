@@ -8,7 +8,9 @@ import FooterLogo from "./FooterLogo";
 export default function Footer() {
     return (
         // Main footer container with vertical height and padding
-        <div className="sm:h-[40dvh] flex flex-col p-6 sm:p-8 gap-4 bg-neutral-900">
+        <footer 
+        id="footer"
+        className="h-[50vh] flex flex-col p-6 sm:p-8 gap-4 bg-neutral-900">
 
             {/* Top section with grid layout for social icons, logo, and subscribe form */}
             <div className="h-full grid grid-cols-1 sm:grid-cols-3 place-items-center gap-3">
@@ -30,6 +32,6 @@ export default function Footer() {
 
             {/* Bottom section with links and contact info */}
             <FooterInfo />
-        </div>
+        </footer>
     )
 };

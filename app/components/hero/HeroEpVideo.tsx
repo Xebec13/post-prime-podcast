@@ -35,7 +35,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
         <div
             onClick={() => setIsPlaying(true)}
             // Kontener z tłem potrzebnym do efektu mix-blend (zamiast #faaa00 użyłem orange-500 dla spójności)
-            className="relative size-full min-h-100 border-2 border-black overflow-hidden cursor-pointer group "
+            className="relative size-full min-h-100 overflow-hidden cursor-pointer group "
         >
             {/* Zdjęcie z efektem mix-blend-darken */}
             <Image
