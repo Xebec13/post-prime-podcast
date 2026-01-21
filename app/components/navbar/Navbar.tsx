@@ -55,14 +55,12 @@ export default function Navbar() {
                             <Link
                                 href={item.href}
                                 aria-label={item.label}
-                                // Jeśli highlighted -> aplikujemy gradient (textColor z configu).
-                                // Jeśli nie -> czarny tekst (text-inherit) i hover na biały.
+                                
                                 className={`size-full flex items-center justify-center font-black whitespace-nowrap tracking-widest transition-colors ease-out duration-500 
                                     ${isHighlighted ? activeStyle.textColor : "hover:text-neutral-500 text-inherit"}`}
                             >
                                 {item.icon ? (
-                                    // Ikona (zazwyczaj SVG potrzebuje fill/color, a nie bg-clip-text)
-                                    // Jeśli isHighlighted, ikona dostanie np. text-white (zdefiniowane w configu dla id:5)
+                                    
                                     <Icon name="Contact" className={`transition-colors ease-out duration-500 ${isHighlighted ? "text-gray-300" : ""}`} />
                                 ) : (
                                     item.label

@@ -15,7 +15,7 @@ export default async function Hero() {
     return (
         <section
             id="home"
-            className="h-[150vh] bg-inherit py-11 grid grid-cols-[repeat(5,1fr)_0.5fr] grid-rows-[repeat(5,0.5fr)] gap-0.5"
+            className="h-[150vh] bg-inherit pt-11 grid grid-cols-[repeat(5,1fr)_0.5fr] grid-rows-[repeat(5,0.5fr)] gap-0.5"
         >
             {/* Logo */}
             <div className="row-start-1 row-span-2 col-span-full md:col-span-3 md:row-span-3 flex justify-center size-full border-2">

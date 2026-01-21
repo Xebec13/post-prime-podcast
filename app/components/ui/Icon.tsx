@@ -1,7 +1,7 @@
-import { iconMap, IconName } from "../utils/icons";
+import { iconMap, IconName } from "./icons";
 
 interface IconProps {
-    name: IconName;       // Tutaj wymuszamy, że musi to być klucz z naszego utils
+    name: IconName;       // Tutaj wymuszamy, że musi to być klucz
     className?: string;   // Opcjonalne klasy Tailwind
     size?: number;        // Opcjonalny rozmiar
 }

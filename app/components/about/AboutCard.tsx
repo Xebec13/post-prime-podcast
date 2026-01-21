@@ -17,7 +17,7 @@ export default function AboutCard({ host }: AboutCardProps) {
     
    
     return (
-        <div className="relative size-full min-w-20 max-w-lg lg:min-w-xs lg:max-w-full space-y-3">
+        <div className="relative size-full min-w-20 max-w-lg lg:min-w-xs lg:max-w-full ">
 
             {/* Miejsce na zdjęcie (hostImg) */}
             <div
@@ -32,7 +32,7 @@ export default function AboutCard({ host }: AboutCardProps) {
                 style={{
                     backgroundImage: `url(${host.hostBg})`
                 }}
-                className={`relative size-full max-w-2/3 max-h-2/3 aspect-square border-orange-100 border-10 `}>
+                className={`relative size-full max-w-2/3 max-h-2/3 aspect-square border-orange-50 border-20 `}>
                     <Image
                         src={host.hostImg}
                         alt={host.name}
@@ -44,10 +44,10 @@ export default function AboutCard({ host }: AboutCardProps) {
             </div>
 
             {/* Podpis pod zdjęciem */}
-            <div className="text-left w-full ">
-                <h3 className="text-lg lg:text-2xl font-bold uppercase">{host.name}</h3>
+            <div className="text-left w-full p-2">
+                <h3 className="text-orange-50 text-lg lg:text-2xl font-bold uppercase">{host.name}</h3>
                 {/* Tekst pozostaje bez zmian (orange-300) */}
-                <p className="text-xs lg:text-sm text-orange-300 font-medium uppercase tracking-widest">
+                <p className="text-orange-50/80 text-xs lg:text-sm  font-medium uppercase tracking-widest">
                     {host.role}
                 </p>
             </div>
