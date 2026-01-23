@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
+import { Inter,Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   weight: "400"
 })
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${inter.variable} antialiased`}
+        className={`${playfair.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

@@ -9,10 +9,12 @@ export default function YoutubePlayer() {
     };
 
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-4">
+        <div className="relative group w-full flex flex-col justify-center items-center gap-4 p-3 rounded-lg bg-inherit text-gray-100 cursor-pointer">
+            {/* tło animowane od środka */}
+            <span className="absolute inset-0 bg-inherit rounded-lg scale-93 group-hover:scale-100 group-hover:bg-orange-500/50 transition-all duration-300 ease-out z-0"/>
 
             {/* Kontener Wideo (Facade) */}
-            <div className="relative w-full aspect-video bg-neutral-950 rounded-lg overflow-hidden cursor-pointer">
+            <div className="relative w-full aspect-video bg-neutral-950 rounded-lg overflow-hidden z-10">
                 <Image
                     src={mainVideo.thumbnail}
                     alt={mainVideo.title}
@@ -22,17 +24,12 @@ export default function YoutubePlayer() {
                 />
 
                 {/* Przycisk Play */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="absolute inset-0 flex items-center justify-center z-20">
                     <div className="py-5 px-10 bg-orange-500/90 rounded-lg shadow-xl">
-                        <Icon name="Play"  className="text-neutral-900 size-4 lg:size-8" />
+                        <Icon name="Play" className="text-neutral-100 size-4 lg:size-8" />
                     </div>
                 </div>
             </div>
-
-            {/* Tytuł pod filmem */}
-            <p className="w-full text-2xl md:text-3xl px-2 font-black uppercase tracking-tighter">
-                {mainVideo.title}
-            </p>
         </div>
     );
 }

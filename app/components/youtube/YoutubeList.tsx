@@ -1,5 +1,5 @@
 import Image from "next/image";
-import YoutubeLink from "./YoutubeLink";
+import {LargeScreenLink} from "../ui/Links";
 
 const recentVideos = Array.from({ length: 9 }).map((_, i) => ({
     id: i,
@@ -12,13 +12,15 @@ const recentVideos = Array.from({ length: 9 }).map((_, i) => ({
 export default function YoutubeList() {
     return (
         <div
-            className="relative grid grid-cols-2 lg:grid-cols-3 gap-1.5 lg:gap-3">
+            className="relative grid grid-cols-2 lg:grid-cols-3 gap-1.5 lg:gap-3 lg:pb-23">
             {recentVideos.map((video) => {
                 return (
                     <div
                         key={video.id}
-                        className="relative flex flex-col gap-3 p-1.5 group  cursor-pointer"
+                        className="relative group flex flex-col gap-3 p-3 group cursor-pointer"
                     >
+                        {/* tło animowane od środka */}
+                        <span className="absolute inset-0 bg-inherit rounded-lg scale-93 group-hover:scale-100 group-hover:bg-orange-500/50 transition-all duration-300 ease-out z-0" />
                         {/* TREŚĆ */}
                         <div className="relative w-full aspect-video overflow-hidden bg-neutral-900 rounded-lg">
                             <Image
@@ -29,11 +31,11 @@ export default function YoutubeList() {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1.5 px-2">
-                            <h4 className="text-base font-bold text-current leading-tight tracking-tighter uppercase line-clamp-2">
+                        <div className="relative flex flex-col gap-1.5 px-2 text-neutral-900">
+                            <h4 className="text-sm lg:text-base font-black text-current leading-tight tracking-tighter line-clamp-2">
                                 {video.title}
                             </h4>
-                            <div className="flex gap-3 text-[10px] text-neutral-900 font-medium uppercase tracking-wider">
+                            <div className="flex gap-3 text-[10px] font-medium uppercase tracking-wider">
                                 <span>{video.views}</span>
                                 <span>{video.date}</span>
                             </div>
@@ -41,17 +43,9 @@ export default function YoutubeList() {
                     </div>
                 );
             })}
-            {/* === DESKTOP BUTTON (Absolutny) === */}
-            {/* Widoczny tylko na >= lg. Pozycjonowany w prawym dolnym rogu sekcji (tak jak w About) */}
-            <div className="hidden lg:block absolute -bottom-10 right-10">
-                <YoutubeLink className="text-sm text-white bg-red-600 px-4 py-1.5 rounded-md " text="Playlist" />
+            <div className="hidden lg:block absolute bottom-3 right-7 text-neutral-900">
+                <LargeScreenLink text="playlist" href="#" isExternal={false} />
             </div>
-            {/* === MOBILE BUTTON (Wewnątrz Grida) === */}
-            {/* Widoczny tylko < lg. Wypełnia lukę 10 w siatce 2-kolumnowej */}
-            <div className="lg:hidden flex items-center justify-center border-2 border-dashed border-neutral-700 p-5">
-                <YoutubeLink className="text-sm text-neutral-400" text="More Videos" />
-            </div>
-
         </div>
     );
 }

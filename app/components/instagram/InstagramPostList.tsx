@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Icon from "../ui/Icon";
+import { IconLink, LargeScreenLink } from "../ui/Links";
 
 // Generujemy 6 postów
 const igPosts = Array.from({ length: 6 }).map((_, i) => ({
@@ -13,64 +15,53 @@ const igPosts = Array.from({ length: 6 }).map((_, i) => ({
 export default function InstagramPostList() {
     return (
         // Grid: startujemy od grid-cols-2, potem lg:grid-cols-3 (identycznie jak FB)
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {igPosts.map((post, index) => {
-                // Logika separatorów (identyczna jak w FB)
-                const showRightBase = (index + 1) % 2 !== 0;
-                const showRightLg = (index + 1) % 3 !== 0;
-                const showBottomBase = index < 4;
-                const showBottomLg = index < 3;
+        <div className="relative grid grid-cols-2 lg:grid-cols-3 gap-2 text-inherit lg:pb-23">
+            {igPosts.map((post) => {
 
                 return (
                     <div
                         key={post.id}
-                        className="relative flex flex-col gap-4 p-5 group cursor-pointer hover:bg-white/5 transition-colors duration-500"
+                        className="group relative flex flex-col gap-2 p-2 cursor-pointer"
                     >
-                        {/* === SEPARATORY === */}
-
-                        {/* PIONOWA */}
-                        <div className={`absolute -right-3 lg:-right-4 top-4 bottom-4 w-0.5 bg-zinc-100/20
-                            ${showRightBase ? 'block' : 'hidden'} 
-                            ${showRightLg ? 'lg:block' : 'lg:hidden'}
-                        `} />
-
-                        {/* POZIOMA */}
-                        <div className={`absolute -bottom-3 lg:-bottom-4 left-4 right-4 h-0.5 bg-zinc-100/20
-                            ${showBottomBase ? 'block' : 'hidden'}
-                            ${showBottomLg ? 'lg:block' : 'lg:hidden'} 
-                        `} />
-
-                        {/* === TREŚĆ === */}
 
                         {/* Zdjęcie (Kwadratowe) */}
-                        <div className="relative w-full aspect-square border border-neutral-100/20 bg-black overflow-hidden">
+                        <div className="relative w-full aspect-square bg-black overflow-hidden">
                             <Image
                                 src={post.image}
                                 alt="Post thumbnail"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                                className="object-cover"
                             />
                         </div>
 
                         {/* Tekst i Statystyki */}
-                        <div className="flex flex-col gap-3">
-                            <p className="text-sm text-neutral-300 font-serif leading-relaxed line-clamp-3 group-hover:text-white transition-colors">
+                        <div className="flex flex-col gap-2 px-1">
+                            <p className="text-sm font-semibold leading-relaxed line-clamp-3">
                                 {post.content}
                             </p>
 
-                            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-500 mt-1">
-                                {/* ZMIANA KOLORU HOVER: text-pink-500 */}
-                                <div className="flex gap-3 group-hover:text-pink-500 transition-colors">
-                                    <span>❤️ {post.likes}</span>
-                                    <span>💬 {post.comments}</span>
+                            <div className="flex items-center gap-3 px-2 text-xs font-bold mt-1 text-inherit">
+                                <div className="flex justify-center items-center gap-1 transition-colors duration-300 group-hover:text-fuchsia-600/90">
+                                    <Icon name="Play" />
+                                    <span>{post.likes}</span>
                                 </div>
-                                <span>{post.date}</span>
+                                <div className="flex justify-center items-center gap-1.5 transition-colors duration-300 group-hover:text-fuchsia-600/90">
+                                    <Icon name="Comment" />
+                                    <span>{post.comments}</span>
+                                </div>
+                                <div className="ml-auto flex justify-center items-center gap-1 overflow-hidden">
+                                    <span className="origin-right opacity-0 translate-x-full transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100 whitespace-nowrap">{post.date}</span>
+                                    <IconLink href="#" size={14} />
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
                 );
             })}
+            <div className="hidden lg:block absolute bottom-3 right-5 text-neutral-950">
+                <LargeScreenLink text="reels" href="#" isExternal={false} />
+            </div>
         </div>
     );
 }

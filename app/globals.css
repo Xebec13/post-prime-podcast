@@ -10,9 +10,9 @@ body {
 @layer utilities {
   h1,
   h2,
-  .font-archivo,
+  .font-playfair,
   .about-link {
-    font-family: var(--font-archivo);
+    font-family: var(--font-playfair);
   }
 
   /* == Marquee (Infinite Loop) == */
