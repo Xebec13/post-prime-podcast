@@ -1,29 +1,29 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { useScroll, useMotionValueEvent } from "motion/react";
 
 export function useNavbarScroll() {
     const [isVisible, setIsVisible] = useState(true);
-    const lastScrollYRef = useRef(0);
+    const { scrollY } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            const lastScrollY = lastScrollYRef.current;
+    useMotionValueEvent(scrollY, "change", (current) => {
+        const previous = scrollY.getPrevious() || 0;
+        const diff = current - previous;
 
-            // Logika chowania/pokazywania
-            if (currentScrollY > lastScrollY && currentScrollY > 10) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-            
-            lastScrollYRef.current = currentScrollY;
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        // 1. Zawsze pokazuj na samej górze (< 50px)
+        if (current < 50) {
+            setIsVisible(true);
+        } 
+        // 2. Schowaj, jeśli scrollujesz w DÓŁ (> 10px diff)
+        else if (diff > 10) {
+            setIsVisible(false);
+        } 
+        // 3. Pokaż, jeśli scrollujesz w GÓRĘ (< -10px diff)
+        else if (diff < -10) {
+            setIsVisible(true);
+        }
+    });
 
     return isVisible;
 }

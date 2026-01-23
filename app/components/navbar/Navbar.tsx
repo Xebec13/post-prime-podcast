@@ -4,6 +4,7 @@ import Link from "next/link";
 import Icon from "../ui/Icon";
 import { useNavbarScroll } from "./useNavbarScroll";
 import { useNavbarSpotlight } from "./useNavbarSpotlight";
+import NavbarAnimation from "./NavbarAnimation"; // Import wrappera
 
 type NavItem = {
     href: string;
@@ -12,12 +13,12 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-    { href: "#home", label: "Post Prime" },
-    { href: "#about", label: "Autorzy" },
-    { href: "#youtube", label: "Youtube" },
-    { href: "#facebook", label: "Facebook" },
-    { href: "#instagram", label: "Instagram" },
-    { href: "#footer", label: "Contact", icon: "Comment" }, 
+    { href: "#home", label: "post prime" },
+    { href: "#about", label: "autorzy" },
+    { href: "#youtube", label: "youtube" },
+    { href: "#facebook", label: "facebook" },
+    { href: "#instagram", label: "instagram" },
+    { href: "#footer", label: "contact", icon: "Comment" }, 
 ];
 
 export default function Navbar() {
@@ -25,18 +26,16 @@ export default function Navbar() {
     const { activeStyle, currentStyleIndex, setHoverIndex } = useNavbarSpotlight();
 
     return (
-        <nav
-            className={`font-archivo fixed top-0 left-0 z-50 w-full h-10 bg-orange-50 text-inherit outline-2 transition-transform duration-500 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-        >
+        <NavbarAnimation isVisible={isVisible}>
             <ul
                 onMouseLeave={() => setHoverIndex(null)}
                 className="relative list-none grid grid-cols-[repeat(5,1fr)_0.5fr] size-full isolate"
             >
-                {/* BLOB (Teraz zawsze czarny - bg-neutral-900) */}
+                {/* BLOB */}
                 <div
-                    className={`absolute top-0 bottom-0 left-0 -z-10 h-full transition-[transform,colors] duration-500 ease-in-out origin-left ${activeStyle.color}`}
+                    className={`absolute inset-0 -z-10 h-full transition-[transform,colors] duration-500 ease-in-out origin-left ${activeStyle.color}`}
                     style={{
-                        width: "18.1818%",
+                        width: "18.1802%",
                         transform: `translateX(${activeStyle.translateX}) scaleX(${activeStyle.scaleX})`
                     }}
                 />
@@ -50,18 +49,17 @@ export default function Navbar() {
                         <li
                             key={index}
                             onMouseEnter={() => setHoverIndex(myIndex)}
-                            className="text-[clamp(0.6rem,1vw,1rem)] border-r size-full cursor-pointer z-10"
+                        
+                            className="text-[clamp(0.6rem,1vw,1rem)] uppercase font-playfair font-black whitespace-nowrap tracking-widest border-r border-neutral-900 size-full cursor-pointer"
                         >
                             <Link
                                 href={item.href}
                                 aria-label={item.label}
-                                
-                                className={`size-full flex items-center justify-center font-black whitespace-nowrap tracking-widest transition-colors ease-out duration-500 
-                                    ${isHighlighted ? activeStyle.textColor : "hover:text-neutral-500 text-inherit"}`}
+                                className={`size-full flex items-center justify-center transition-colors ease-out duration-500 
+                                    ${isHighlighted ? activeStyle.textColor : "hover:text-orange-500 text-inherit"}`}
                             >
                                 {item.icon ? (
-                                    
-                                    <Icon name="Contact" className={`transition-colors ease-out duration-500 ${isHighlighted ? "text-gray-300" : ""}`} />
+                                    <Icon name="Contact" />
                                 ) : (
                                     item.label
                                 )}
@@ -71,6 +69,6 @@ export default function Navbar() {
                 })}
 
             </ul>
-        </nav>
+        </NavbarAnimation>
     );
 }
