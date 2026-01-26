@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Icon from "../ui/Icon";
+import Icon from "../../ui/Icon";
 import Image from "next/image";
 
 interface HeroEpVideoProps {

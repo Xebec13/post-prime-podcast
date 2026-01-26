@@ -1,0 +1,7 @@
+export {default as HeroEpInfo } from "./HeroEpInfo"
+export {default as HeroEpVideo } from "./HeroEpVideo"
+export {default as HeroLogo } from "./HeroLogo"
+export {default as HeroMarquee } from "./HeroMarquee"
+export {default as HeroScore } from "./HeroScore"
+export {default as HeroAudienceStats } from "./HeroAudienceStats"
+// export {default as  } from "./"

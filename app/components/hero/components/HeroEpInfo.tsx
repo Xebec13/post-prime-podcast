@@ -1,4 +1,4 @@
-import Icon from "../ui/Icon";
+import Icon from "../../ui/Icon";
 
 interface HeroEpInfoProps {
     title: string;

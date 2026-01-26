@@ -1,7 +1,11 @@
-import HeroEpInfo from "./HeroEpInfo";
-import HeroEpVideo from "./HeroEpVideo";
-import HeroLogo from "./HeroLogo";
-import HeroTitle from "./HeroTitle";
+import {
+    HeroEpInfo,
+    HeroEpVideo,
+    HeroLogo,
+    HeroScore,
+    HeroMarquee,
+    HeroAudienceStats
+} from "./components";
 
 export default async function Hero() {
     const video = {
@@ -15,36 +19,66 @@ export default async function Hero() {
     return (
         <section
             id="home"
-            className="h-[150vh] bg-inherit pt-11 grid grid-cols-[repeat(5,1fr)_0.5fr] grid-rows-[repeat(5,0.5fr)] gap-0.5"
+            className="grid h-[150vh] grid-cols-[repeat(5,1fr)_0.5fr] grid-rows-10 gap-0.5 bg-inherit px-1 pt-11 md:grid-rows-[repeat(5,0.5fr)]"
         >
-            {/* Logo */}
-            <div className="row-start-1 row-span-2 col-span-full md:col-span-3 md:row-span-3 flex justify-center size-full border-2">
+            {/* 1. LOGO */}
+            {/* Mobile: Lewy górny róg (3 kolumny). Desktop: Lewy górny kwadrat (2x2) */}
+            <div className="col-span-3 row-start-1 flex size-full justify-center border-2 md:col-span-2 md:row-span-2">
                 <HeroLogo logoSrc="/postprime-logo-2.png" />
             </div>
 
-            {/* Górny prawy blok */}
-            <div className="row-start-3 col-span-3  md:col-start-4 md:col-span-3 md:row-span-2 border-2">NBA</div>
-
-            {/* Marquee / tytuły */}
-            <div className="row-start-3 col-span-3 md:col-start-4 md:row-start-3 md:col-span-3 border-2">
-                <HeroTitle title={heroTitles} />
+            {/* 2. AUDIENCE STATS */}
+            {/* Mobile: Mały kwadrat pod logo. Desktop: Środkowa kolumna, górne 2 rzędy */}
+            <div className="col-span-1 col-start-1 row-span-1 row-start-2 border-2 md:col-span-1 md:col-start-3 md:row-span-2 md:row-start-1">
+                <HeroAudienceStats />
             </div>
 
-            {/* Video + Info w jednym wrapperze */}
-            <div className="row-start-4 row-span-full col-span-full  md:h-[75vh] grid grid-cols-[2fr_4fr] gap-0.5">
+            {/* 3. HERO SCORE */}
+            {/* Mobile: Obok Stats, 2 rzędy. Desktop: Prawa strona, górne 2 rzędy */}
+            <div className="col-span-full col-start-2 row-span-2 row-start-2 border-2 md:col-span-full md:col-start-4 md:row-span-2 md:row-start-1">
+                <HeroScore />
+            </div>
 
-                {/* Info */}
-                <div className="border-2 size-full">
+            {/* 4. MARQUEE / TYTUŁY */}
+            {/* Mobile: Prawy górny róg. Desktop: Lewa strona, 3 rząd */}
+            <div className="col-span-3 col-start-4 row-start-1 border-2 md:col-span-2 md:col-start-1 md:row-start-3">
+                <HeroMarquee title={heroTitles} />
+            </div>
+
+            {/* 5. LINKS */}
+            {/* Mobile: Pod Stats. Desktop: Pod Marquee, 4 rząd */}
+            <div className="col-span-1 col-start-1 row-start-3 border-2 md:col-span-2 md:row-start-4">
+                links
+            </div>
+
+            {/* 6. AD (REKLAMA) */}
+            {/* Mobile: Cała szerokość, 4 rząd. Desktop: Środek, pod Stats */}
+            <div className="col-span-full col-start-1 row-start-4 border-2 bg-neutral-400 md:col-start-3 md:row-span-2">
+                ad
+            </div>
+
+            {/* 7. LAST POST */}
+            {/* Mobile: 5 rząd. Desktop: 5 rząd (dół górnej sekcji) */}
+            <div className="col-span-full col-start-1 row-start-5 border-2 text-center md:row-start-5">
+                Last Post
+            </div>
+
+            {/* 8. VIDEO + INFO WRAPPER (DOLNA POŁOWA EKRANU) */}
+            {/* Zajmuje wszystko od 6 rzędu do dołu */}
+            <div className="col-span-full row-span-full row-start-6 grid grid-cols-[repeat(5,1fr)_0.5fr] gap-0.5 md:h-[75vh]">
+
+                {/* Info (Tytuł + Statystyki) */}
+                <div className="col-span-2 size-full border-2">
                     <HeroEpInfo title={video.title} statistics={video.statistics} />
                 </div>
 
-                {/* Video */}
-                <div className="border-2 size-full">
+                {/* Video Player */}
+                <div className="col-span-full col-start-3 size-full border-2">
                     <HeroEpVideo videoId={video.videoId} thumbnail={video.thumbnail} />
                 </div>
 
             </div>
 
         </section>
-    )
+    );
 }

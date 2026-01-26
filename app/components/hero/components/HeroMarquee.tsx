@@ -1,11 +1,12 @@
-interface HeroTitleProps {
+interface HeroMarquee {
     title: string[];
+    className?: string;
 }
 
-export default function HeroTitle({ title }: HeroTitleProps) {
+export default function HeroMarquee({ title, className = " " }: HeroMarquee) {
     return (
-        <div className="font-archivo overflow-hidden whitespace-nowrap tracking-wide font-black text-inherit flex items-center size-full">
-            <div className="marquee-track uppercase text-[clamp(1.5rem,6vw,6.5rem)]">
+        <div className={`${className} overflow-hidden whitespace-nowrap tracking-tighter font-black text-inherit flex items-center size-full`}>
+            <div className="marquee-track uppercase text-[clamp(1.5rem,3.5vw,3rem)]">
                 {[...title, ...title].map((word, idx) => (
                     <h2 key={idx} className="flex items-center gap-5 py-0.5 px-3">
                         {word}
