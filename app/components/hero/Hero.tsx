@@ -4,7 +4,8 @@ import {
     HeroLogo,
     HeroScore,
     HeroMarquee,
-    HeroAudienceStats
+    HeroAudienceStats,
+    HeroLinks,
 } from "./components";
 
 export default async function Hero() {
@@ -23,13 +24,13 @@ export default async function Hero() {
         >
             {/* 1. LOGO */}
             {/* Mobile: Lewy górny róg (3 kolumny). Desktop: Lewy górny kwadrat (2x2) */}
-            <div className="col-span-3 row-start-1 flex size-full justify-center border-2 md:col-span-2 md:row-span-2">
+            <div className="col-start-1 col-span-2 row-start-1  border-2 md:col-span-2 md:row-span-2">
                 <HeroLogo logoSrc="/postprime-logo-2.png" />
             </div>
 
             {/* 2. AUDIENCE STATS */}
             {/* Mobile: Mały kwadrat pod logo. Desktop: Środkowa kolumna, górne 2 rzędy */}
-            <div className="col-span-1 col-start-1 row-span-1 row-start-2 border-2 md:col-span-1 md:col-start-3 md:row-span-2 md:row-start-1">
+            <div className="row-span-1 row-start-2 border-2 md:col-span-1 md:col-start-3 md:row-span-2 md:row-start-1">
                 <HeroAudienceStats />
             </div>
 
@@ -41,14 +42,14 @@ export default async function Hero() {
 
             {/* 4. MARQUEE / TYTUŁY */}
             {/* Mobile: Prawy górny róg. Desktop: Lewa strona, 3 rząd */}
-            <div className="col-span-3 col-start-4 row-start-1 border-2 md:col-span-2 md:col-start-1 md:row-start-3">
+            <div className="col-span-full col-start-3 row-start-1 border-2 md:col-span-2 md:col-start-1 md:row-start-3">
                 <HeroMarquee title={heroTitles} />
             </div>
 
             {/* 5. LINKS */}
             {/* Mobile: Pod Stats. Desktop: Pod Marquee, 4 rząd */}
-            <div className="col-span-1 col-start-1 row-start-3 border-2 md:col-span-2 md:row-start-4">
-                links
+            <div className="row-start-3 col-start-1  border-2 md:col-span-2 md:row-start-4 min-w-25 max-w-full">
+                <HeroLinks />
             </div>
 
             {/* 6. AD (REKLAMA) */}
@@ -65,7 +66,7 @@ export default async function Hero() {
 
             {/* 8. VIDEO + INFO WRAPPER (DOLNA POŁOWA EKRANU) */}
             {/* Zajmuje wszystko od 6 rzędu do dołu */}
-            <div className="col-span-full row-span-full row-start-6 grid grid-cols-[repeat(5,1fr)_0.5fr] gap-0.5 md:h-[75vh]">
+            <div className="col-span-full row-span-full row-start-6 grid grid-cols-[repeat(5,1fr)_0.5fr] gap-0.5 md:min-h-[75vh]">
 
                 {/* Info (Tytuł + Statystyki) */}
                 <div className="col-span-2 size-full border-2">

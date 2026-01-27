@@ -7,9 +7,9 @@ import {
     FaComment, 
     FaYoutube, 
     FaFacebook, 
-    FaInstagram 
+    
 } from "react-icons/fa";
-
+import { FaSquareInstagram } from "react-icons/fa6";
 
 export const iconMap = {
     ArrowRight:FaArrowRight,
@@ -20,7 +20,7 @@ export const iconMap = {
     Comment: FaComment,
     Youtube: FaYoutube,
     Facebook: FaFacebook,
-    Instagram: FaInstagram,
+    Instagram: FaSquareInstagram,
 };
 
 export type IconName = keyof typeof iconMap;

@@ -7,7 +7,7 @@ interface HeroLogoProps {
 
 export default function HeroLogo({className,logoSrc}: HeroLogoProps) {
     return (
-        <div className="relative aspect-square">
+        <div className="relative aspect-square size-full">
             <Image
                 src={logoSrc}
                 alt="logo"
