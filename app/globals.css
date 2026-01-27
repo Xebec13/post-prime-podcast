@@ -21,21 +21,4 @@ body {
     font-family: var(--font-playfair);
   }
 
-  /* == Marquee (Infinite Loop) == */
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 40s linear infinite;
-    transform-origin: left;
-    will-change: transform;
-    
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }

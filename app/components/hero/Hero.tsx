@@ -48,7 +48,7 @@ export default async function Hero() {
 
             {/* 5. LINKS */}
             {/* Mobile: Pod Stats. Desktop: Pod Marquee, 4 rząd */}
-            <div className="row-start-3 col-start-1  border-2 md:col-span-2 md:row-start-4 min-w-25 max-w-full">
+            <div className="row-start-3 col-start-1  border-2 md:col-span-2 md:row-start-4 min-w-25">
                 <HeroLinks />
             </div>
 
