@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Icon from "../../ui/Icon";
 import Image from "next/image";
 import { motion, Variants } from "motion/react";
-
+import PlayButton from "../../ui/PlayButton";
 interface HeroEpVideoProps {
     videoId: string;
     thumbnail: string;
@@ -12,7 +11,7 @@ interface HeroEpVideoProps {
 
 // Te same warianty co w EpInfo dla spójności (wjazd z lewej)
 const videoVariants: Variants = {
-    hidden: { x: -50, opacity: 0 },
+    hidden: { x: 50, opacity: 0 },
     visible: { 
         x: 0, 
         opacity: 1, 
@@ -64,9 +63,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
 
             {/* Przycisk Play */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="py-3 px-6 md:py-5 md:px-10 bg-orange-500/90 rounded-lg shadow-xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-orange-500">
-                    <Icon name="Play" className="text-white size-6 lg:size-8" />
-                </div>
+                <PlayButton/>
             </div>
         </motion.div>
     );
