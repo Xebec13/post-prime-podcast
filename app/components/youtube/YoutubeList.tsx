@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {LargeScreenLink} from "../ui/Links";
+import {SmartLinkLg} from "../ui/SmartLinks";
 
 const recentVideos = Array.from({ length: 9 }).map((_, i) => ({
     id: i,
@@ -44,7 +44,7 @@ export default function YoutubeList() {
                 );
             })}
             <div className="hidden lg:block absolute bottom-3 right-7 text-neutral-900">
-                <LargeScreenLink text="playlist" href="#" isExternal={false} />
+                <SmartLinkLg text="playlist" href="#" isExternal={false} />
             </div>
         </div>
     );

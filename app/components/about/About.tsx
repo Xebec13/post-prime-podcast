@@ -1,5 +1,5 @@
 import AboutCard from "./AboutCard";
-import {LargeScreenLink} from "../ui/Links";
+import {SmartLinkLg} from "../ui/SmartLinks";
 const hosts = [
     {
         id: 1,
@@ -46,7 +46,7 @@ export default function About() {
                 ))}
             </div>
             <div className="hidden lg:block w-fit absolute bottom-5 right-15 ml-auto text-neutral-50">
-                <LargeScreenLink text="więcej o nas" href="#" isExternal={false}/>
+                <SmartLinkLg text="więcej o nas" href="#" isExternal={false}/>
             </div>
         </section>
     );

@@ -3,14 +3,15 @@
 import { useState } from "react";
 import { useScroll, useMotionValueEvent } from "motion/react";
 
-// === KONFIGURACJA POZOSTAJE BEZ ZMIAN ===
+// === KONFIGURACJA STYLI ===
+// Usunięto 'textColor', ponieważ kolor tekstu aktywnego elementu jest teraz globalny (text-neutral-950)
 export const SPOTLIGHT_CONFIG = [
-    { id: 0, color: "bg-neutral-900", textColor: "text-transparent bg-clip-text bg-gradient-to-r from-orange-600/90 to-orange-300", translateX: "0%", scaleX: 1 }, 
-    { id: 1, color: "bg-neutral-900", textColor: "text-transparent bg-clip-text bg-gradient-to-r from-orange-50 to-white", translateX: "100%", scaleX: 1 }, 
-    { id: 2, color: "bg-neutral-900", textColor: "text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400", translateX: "200%", scaleX: 1 }, 
-    { id: 3, color: "bg-neutral-900", textColor: "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-300", translateX: "300%", scaleX: 1 }, 
-    { id: 4, color: "bg-neutral-900", textColor: "text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-500", translateX: "400%", scaleX: 1 }, 
-    { id: 5, color: "bg-neutral-900", textColor: "text-orange-500", translateX: "500%", scaleX: 0.5 }, 
+    { id: 0, color: "bg-orange-500/90", translateX: "0%",   scaleX: 1 }, 
+    { id: 1, color: "bg-orange-500/70", translateX: "100%", scaleX: 1 }, 
+    { id: 2, color: "bg-red-500/60", translateX: "200%", scaleX: 1 }, 
+    { id: 3, color: "bg-blue-500/50", translateX: "300%", scaleX: 1 }, 
+    { id: 4, color: "bg-fuchsia-600/40", translateX: "400%", scaleX: 1 }, 
+    { id: 5, color: "bg-neutral-400/30", translateX: "500%", scaleX: 1 }, 
 ];
 
 const SECTIONS = ["home", "about", "youtube", "facebook", "instagram", "footer"];
@@ -26,7 +27,6 @@ export function useNavbarSpotlight() {
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // 1. Sprawdzenie, czy jesteśmy na samym dole strony
-        // Uwaga: w Motion 'latest' to window.scrollY
         const isBottom = window.innerHeight + latest >= document.body.offsetHeight - 10;
 
         if (isBottom) {

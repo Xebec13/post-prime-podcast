@@ -6,54 +6,54 @@ import Icon from "../../ui/Icon";
 interface HeroMarqueeProps {
     title: string[];
     className?: string;
+    direction?: "left" | "right";
 }
 
-export default function HeroMarquee({ title, className = "" }: HeroMarqueeProps) {
-    // Czas trwania wejścia (slide down)
-    const ENTER_DURATION = 1;
+export default function HeroMarquee({ title, className = "", direction = "left" }: HeroMarqueeProps) {
+    const ENTER_DURATION = 1.2;
     const ENTER_DELAY = 0.2;
+    const isRight = direction === "right";
+
+   
+    const doubleTitle = [...title, ...title];
 
     return (
-        <div className={`size-full overflow-hidden ${className}`}>
+        <div className={`flex items-center size-full overflow-hidden select-none ${className}`}>
             
-            {/* 1. KONTENER ANIMOWANY (Slide left: -100% -> 0) */}
+            {/* KONTENER WEJŚCIA */}
             <motion.div 
-                className="size-full flex items-center"
-                initial={{ x: "100%" }} // Startujemy schowani u góry (slide-left)
-                animate={{ x: 0 }}       // Zjeżdżamy na miejsce
-                transition={{ 
-                    duration: ENTER_DURATION, 
-                    ease: [0.33, 1, 0.68, 1], 
-                    delay: ENTER_DELAY 
-                }}
+                className={`flex items-center w-full h-full ${isRight ? "scale-x-[-1]" : ""} will-change-transform`}
+                initial={{ x: "100%" }} 
+                animate={{ x: 0 }}
+                transition={{ duration: ENTER_DURATION, ease: [0.25, 1, 0.5, 1], delay: ENTER_DELAY }}
             >
-
-                {/* 2. PĘTLA MARQUEE */}
+                {/* PĘTLA MARQUEE */}
                 <motion.div 
-                    className="flex items-center whitespace-nowrap tracking-tighter font-bold uppercase text-inherit text-[clamp(1.5rem,2.25rem+1.5vw,4rem)]"
-                    initial={{ x: "0" }}
-                    animate={{ x: "-100%" }}
+                    className="flex items-center gap-8 whitespace-nowrap font-black uppercase text-[clamp(1.25rem,1.5rem+1vw,3rem)] tracking-tighter will-change-transform"
+                    initial={{ x: "0%" }}
+                    animate={{ x: "-50%" }}
                     transition={{ 
-                        duration: 45, 
+                        duration: 30, // Znacznie przyspieszyłem (120s to prawie bezruch)
                         ease: "linear", 
-                        repeat: Infinity,
-                        // KLUCZOWE: Startuje dopiero po zakończeniu wejścia rodzica
-                        delay: ENTER_DURATION + ENTER_DELAY 
+                        repeat: Infinity, 
+                        // Brak delay tutaj sprawi, że pętla ruszy od razu po wjeździe całego paska
                     }}
                 >
-                    {[...title, ...title, ...title, ...title].map((word, idx) => (
-                        <div key={idx} className="flex items-center gap-5 px-3">
-                            <h2>{word}</h2>
+                    {/* Renderujemy zestaw dwa razy */}
+                    {doubleTitle.map((word, idx) => (
+                        <div 
+                            key={`${word}-${idx}`} 
+                            className={`flex items-center gap-8 ${isRight ? "scale-x-[-1]" : ""}`}
+                        >
+                            <span className="inline-block">{word}</span>
                             <Icon 
                                 name="Basketball" 
-                                size={24}
-                                className="text-orange-500 bg-neutral-800 rounded-full" 
+                                className="text-orange-500 text-[0.7em] shrink-0" 
                             />
                         </div>
                     ))}
                 </motion.div>
-
             </motion.div>
         </div>
-    )
+    );
 }

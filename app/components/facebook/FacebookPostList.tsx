@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LargeScreenLink, IconLink } from "../ui/Links";
+import { SmartLinkLg, IconLink } from "../ui/SmartLinks";
 import Icon from "../ui/Icon";
 
 const fbPosts = Array.from({ length: 6 }).map((_, i) => ({
@@ -54,7 +54,7 @@ export default function FacebookPostList() {
             ))}
 
             <div className="hidden lg:block absolute bottom-3 right-5 text-neutral-950">
-                <LargeScreenLink text="nasze posty" href="#" isExternal={false} />
+                <SmartLinkLg text="nasze posty" href="#" isExternal={false} />
             </div>
         </div>
     );

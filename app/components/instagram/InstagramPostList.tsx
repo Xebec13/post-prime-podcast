@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Icon from "../ui/Icon";
-import { IconLink, LargeScreenLink } from "../ui/Links";
+import { IconLink, SmartLinkLg } from "../ui/SmartLinks";
 
 // Generujemy 6 postów
 const igPosts = Array.from({ length: 6 }).map((_, i) => ({
@@ -60,7 +60,7 @@ export default function InstagramPostList() {
                 );
             })}
             <div className="hidden lg:block absolute bottom-3 right-5 text-neutral-950">
-                <LargeScreenLink text="reels" href="#" isExternal={false} />
+                <SmartLinkLg text="reels" href="#" isExternal={false} />
             </div>
         </div>
     );

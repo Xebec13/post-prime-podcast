@@ -8,18 +8,18 @@ export function useNavbarScroll() {
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (current) => {
-        const previous = scrollY.getPrevious() || 0;
+        const previous = scrollY.getPrevious() ?? 0;
         const diff = current - previous;
 
-        if (current < 50) {
+        // Smart Navbar Logic
+        if (current < 10) {
             setIsVisible(true);
-        } else if (diff > 10) {
+        } else if (diff > 15) { // Ukryj po przewinięciu 15px w dół
             setIsVisible(false);
-        } else if (diff < -10) {
+        } else if (diff < -20) { // Pokaż po przewinięciu 20px w górę (lekki bufor)
             setIsVisible(true);
         }
     });
 
-    // Zwracamy obiekt { isVisible, setIsVisible } zamiast samej wartości
     return { isVisible, setIsVisible };
 }

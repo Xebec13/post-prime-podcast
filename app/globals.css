@@ -3,7 +3,7 @@
   scroll-behavior: smooth;
 }
 body {
-  @apply bg-orange-50 text-neutral-900;
+  @apply bg-neutral-900 text-orange-50;
   font-family: var(--font-inter);
 }
 
