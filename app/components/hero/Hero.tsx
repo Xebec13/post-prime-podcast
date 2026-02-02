@@ -23,7 +23,7 @@ export default async function Hero() {
         <section
             id="home"
 
-            className="grid max-h-[300vh] grid-cols-6 grid-rows-10 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5  bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
+            className="grid max-h-[300vh] grid-cols-6 grid-rows-9 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5  bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
         >
 
             {/* 1. HERO SCORE */}
