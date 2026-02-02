@@ -30,7 +30,7 @@ export default function SubscribeForm() {
 
         <form
             onSubmit={handleSubmit}
-            className="grid grid-cols-1  gap-2 text-gray-950 text-sm"
+            className="grid grid-cols-1 gap-2 text-white text-sm font-bold"
         >
             <input
                 type="text"
@@ -38,7 +38,7 @@ export default function SubscribeForm() {
                 placeholder="Imię"
                 value={formData.name}
                 onChange={handleChange}
-                className="p-2 outline-none bg-orange-200"
+                className="p-2 outline-none bg-orange-500/30"
                 required
             />
             <input
@@ -47,7 +47,7 @@ export default function SubscribeForm() {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="p-2 outline-none bg-orange-200"
+                className="p-2 outline-none bg-orange-500/30"
                 required
             />
         </form>

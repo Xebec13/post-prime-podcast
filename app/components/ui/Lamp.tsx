@@ -7,7 +7,7 @@ interface LampProps {
     className?: string;
 }
 
-export default function HeroLamp({ length = "short", className = "" }: LampProps) {
+export default function Lamp({ length = "short", className = "" }: LampProps) {
     const cableHeight = length === "long" ? "h-[clamp(4rem,9vw,8rem)]" : "h-[clamp(2.5rem,5.5vw,5rem)]";
 
     return (

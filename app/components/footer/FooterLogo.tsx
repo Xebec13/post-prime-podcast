@@ -5,7 +5,7 @@ export default function FooterLogo() {
 
   return (
     <div
-      className="bg-orange-100 rounded-full w-full max-w-25 sm:max-w-35"
+      className="bg-gray-50 rounded-full w-full max-w-25 sm:max-w-35"
     >
       <Image
         src="/postprime-logo-2.png"

@@ -14,7 +14,7 @@ const footerInfoList: FooterInfoItem[] = [
 
 export default function FooterInfo() {
   return (
-    <div className="h-full flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-orange-200">
+    <div className="h-full flex flex-row items-center justify-center gap-2 text-xs sm:text-sm text-gray-300">
       {footerInfoList.map((item) =>
         item.isLink && item.href ? (
           <a

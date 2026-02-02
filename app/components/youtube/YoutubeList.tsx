@@ -53,7 +53,7 @@ export default function YoutubeList() {
                     rotate: ballRotate,
                     opacity: ballOpacity
                 }}
-                className="absolute top-0 right-0 z-0 text-orange-500/40 pointer-events-none"
+                className="absolute top-0 right-25 z-0 text-orange-500/40 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
@@ -63,7 +63,7 @@ export default function YoutubeList() {
                     rotate: ballRotate,
                     opacity: ballOpacity
                 }}
-                className="absolute top-0 left-0 z-0 text-orange-500/50 pointer-events-none"
+                className="absolute top-0 left-15 z-0 text-orange-500/50 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
