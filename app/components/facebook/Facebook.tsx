@@ -1,18 +1,25 @@
+import { SmartLinkLg } from "../ui/SmartLinks";
 import FacebookPostList from "./FacebookPostList";
+import FacebookTitle from "./FacebookTitle";
 
 export default function Facebook() {
     return (
-        <section id="facebook" className="px-5">
+        <section id="facebook" className="w-full space-y-6 lg:space-y-10 pb-10">
 
-            {/* Nagłówek Sekcji */}
-            <div className="text-center border-b-2 border-neutral-900 py-3 px-5">
-                <h2 className="text-[clamp(3rem,10vw,8rem)] font-black uppercase">
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-500">Facebook</span>
-                </h2>
+
+            {/* 1. NAGŁÓWEK SEKCJI */}
+            <FacebookTitle title="Facebook" />
+
+            <div className="px-10">
+
+                <FacebookPostList />
             </div>
-            <div className="px-5">
-
-            <FacebookPostList />
+            <div className="flex px-5 justify-end relative right-5 z-10 text-gray-50 transition-colors hover:text-white">
+                <SmartLinkLg
+                    text="odwiedź kanał"
+                    href="https://www.youtube.com/@PostPrimePL" // Tutaj wstaw właściwy link
+                    isExternal={true}
+                />
             </div>
         </section>
     );

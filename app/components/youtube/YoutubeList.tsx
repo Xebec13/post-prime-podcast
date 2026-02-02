@@ -44,7 +44,7 @@ export default function YoutubeList() {
     const ballOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     return (
-        <div ref={containerRef} className="relative w-full overflow-y-visible overflow-x-hidden">
+        <div ref={containerRef} className="relative w-full">
 
             {/* === SPADAJĄCA PIŁKA (Parallax) === */}
             <motion.div

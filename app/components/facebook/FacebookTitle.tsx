@@ -4,7 +4,7 @@ import { motion, Variants } from "motion/react";
 import Separator from "../ui/Separators";
 import SlideType from "../ui/SlideType";
 
-interface YoutubeTitleProps {
+interface FacebookTitleProps {
     title?: string;
 }
 
@@ -20,7 +20,7 @@ const containerVariants: Variants = {
     }
 };
 
-export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
+export default function FacebookTitle({ title = "Facebook" }: FacebookTitleProps) {
     return (
         <motion.div 
             className="w-full flex flex-col items-center justify-center "
@@ -40,7 +40,7 @@ export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
                 <SlideType 
                     text={title}
                     // ZMIANA: Czerwone tło + Biały tekst
-                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-red-500/90 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
+                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-blue-500/90 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
                 />
             </div>
 

@@ -4,11 +4,11 @@ import { motion, Variants } from "motion/react";
 import Separator from "../ui/Separators";
 import SlideType from "../ui/SlideType";
 
-interface YoutubeTitleProps {
+interface InstagramTitleProps {
     title?: string;
 }
 
-// Ten sam kontener orkiestrujący animację co w About
+// Ten sam kontener orkiestrujący animację co w reszcie
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -20,10 +20,10 @@ const containerVariants: Variants = {
     }
 };
 
-export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
+export default function InstagramTitle({ title = "Instagram" }: InstagramTitleProps) {
     return (
         <motion.div 
-            className="w-full flex flex-col items-center justify-center "
+            className="w-full flex flex-col items-center justify-center"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -36,11 +36,11 @@ export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
             </div>
 
             {/* 2. TREŚĆ */}
-            <div className="my-10 ">
+            <div className="my-10">
                 <SlideType 
                     text={title}
-                    // ZMIANA: Czerwone tło + Biały tekst
-                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-red-500/90 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
+                    // ZMIANA: Fuchsia tło (Instagram) + Biały tekst
+                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-fuchsia-600 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
                 />
             </div>
 

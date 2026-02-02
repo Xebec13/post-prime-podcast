@@ -1,26 +1,26 @@
+import { SmartLinkLg } from "../ui/SmartLinks";
 import InstagramPostList from "./InstagramPostList";
+import InstagramTitle from "./InstagramTitle";
 
 export default function Instagram() {
     return (
         // ZMIANA TŁA: Gradient przechodzący w ciemną fuksję (Instagram vibe)
-        <section id="instagram" className="px-5">
+        <section id="instagram" className="w-full space-y-6 lg:space-y-10 pb-10">
 
-            {/* Nagłówek Sekcji */}
-            <div className="text-center border-b-2 py-3 px-5">
-                <h2 className="text-[clamp(3rem,10vw,8rem)] font-black uppercase">
-                    {/* Gradient charakterystyczny dla Instagrama (Purple -> Pink -> Orange) */}
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-500 via-pink-500 to-orange-500">
-                        Instagram
-                    </span>
-                </h2>
-            </div>
+            <InstagramTitle title="Instagram" />
 
-            <div className="px-5">
+            <div className="px-10">
 
                 {/* 2. Lista Postów (Grid) */}
                 <InstagramPostList />
             </div>
-
+            <div className="flex px-5 justify-end relative right-5 z-10 text-gray-50 transition-colors hover:text-white">
+                <SmartLinkLg
+                    text="odwiedź kanał"
+                    href="https://www.youtube.com/@PostPrimePL" // Tutaj wstaw właściwy link
+                    isExternal={true}
+                />
+            </div>
         </section>
     );
 }
