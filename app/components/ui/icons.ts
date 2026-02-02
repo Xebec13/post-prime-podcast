@@ -7,6 +7,7 @@ import {
     FaComment, 
     FaYoutube, 
     FaFacebook, 
+    FaTwitter,
     FaBasketballBall
     
 } from "react-icons/fa";
@@ -21,6 +22,7 @@ export const iconMap = {
     Comment: FaComment,
     Youtube: FaYoutube,
     Facebook: FaFacebook,
+    Twitter:FaTwitter,
     Instagram: FaSquareInstagram,
     Basketball:FaBasketballBall,
 };

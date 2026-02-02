@@ -63,10 +63,10 @@ export default function HeroBio() {
                     delay: 0.8 
                 }}
             >
-                <p className="font-semibold text-justify leading-4 md:leading-5 tracking-wide text-[clamp(0.45rem,0.55rem+0.6vw,2rem)]">
+                <p className="font-semibold text-justify leading-4 md:leading-5 lg:leading-7 tracking-wide text-[clamp(0.45rem,0.5rem+0.5vw,2rem)]">
                     
                     {/* DROP CAP */}
-                    <span className="float-left text-2xl md:text-3xl lg:text-[2.5rem] font-black leading-1.5 md:leading-1 lg:leading-3 font-playfair text-orange-500/90 font-sans">
+                    <span className="float-left text-xl md:text-3xl lg:text-[2.5rem] font-black leading-1.5 md:leading-1 lg:leading-3 font-playfair text-orange-500/90 font-sans">
                         {firstLetter}
                     </span>
 

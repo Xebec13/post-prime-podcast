@@ -23,12 +23,12 @@ export default async function Hero() {
         <section
             id="home"
 
-            className="grid h-[250vh] grid-cols-6 grid-rows-10 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5  bg-inherit pt-11 px-5 md:h-[200vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
+            className="grid max-h-[280vh] grid-cols-6 grid-rows-10 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5  bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
         >
 
             {/* 1. HERO SCORE */}
             {/* Mobile: 1. rząd (pełna szerokość) */}
-            <div className="col-start-1 col-span-full row-start-1 row-span-1 md:col-start-1 md:col-span-full md:row-start-1 md:row-span-1 lg:col-start-1 lg:col-span-full lg:row-start-1 lg:row-span-1">
+            <div className="md:max-h-full col-start-1 col-span-full row-start-1 row-span-1 md:col-start-1 md:col-span-full md:row-start-1 md:row-span-1 lg:col-start-1 lg:col-span-full lg:row-start-1 lg:row-span-1">
                 <HeroScore />
             </div>
 

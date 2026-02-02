@@ -11,10 +11,9 @@ interface HeroEpVideoProps {
 
 // Te same warianty co w EpInfo dla spójności (wjazd z lewej)
 const videoVariants: Variants = {
-    hidden: { x: 50, opacity: 0 },
+    hidden: { scale:0.7 },
     visible: { 
-        x: 0, 
-        opacity: 1, 
+        scale:1,
         transition: { duration: 0.8, ease: "easeOut" } 
     }
 };
@@ -56,7 +55,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
                 src={thumbnail}
                 alt="Ostatni odcinek - miniaturka"
                 fill
-                sizes="(max-width: 1020px) 100vw, 50vw"
+                sizes="100vw"
                 className="object-cover object-center brightness-50 transition-all duration-500 group-hover:brightness-75"
                 priority
             />

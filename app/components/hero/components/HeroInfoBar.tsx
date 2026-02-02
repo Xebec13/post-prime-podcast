@@ -6,7 +6,7 @@ import ScrollReveal from "../../ui/ScrollReveal"; // Importujemy Twój nowy komp
 
 export default function HeroInfoBar() {
     const date = new Date();
-    const formattedDate = date.toLocaleDateString("en-US", {
+    const formattedDate = date.toLocaleDateString("pl-PL", {
         month: "long",
         day: "2-digit",
         year: "numeric"
@@ -32,7 +32,7 @@ export default function HeroInfoBar() {
         >
             {/* 1. LINIE GÓRNE - automatycznie dostaną stagger z ScrollReveal */}
             <div className="flex flex-col items-center gap-2.5 w-full">
-                <Separator width="long" color="bg-neutral-600" />
+                <Separator width="long" color="bg-neutral-700" />
                 <Separator width="mid" color="bg-neutral-600" />
             </div>
 
@@ -41,18 +41,18 @@ export default function HeroInfoBar() {
                 variants={textVariants} 
                 className="flex items-center flex-col md:flex-row justify-center gap-4 w-full px-4 my-5 lg:my-10"
             >
-                <div className="bg-orange-500/90 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-6 py-1 capitalize tracking-tighter shadow-xl shrink-0 italic">
+                <div className="bg-orange-500/80 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-6 py-1 capitalize tracking-tighter shadow-xl shrink-0">
                     {formattedDate}
                 </div>
 
-                <h3 className="text-gray-50 font-black uppercase italic tracking-tighter text-[clamp(1rem,1.1rem+0.9vw,2.5rem)] whitespace-nowrap">
+                <h3 className="text-gray-50 font-black uppercase tracking-tighter text-[clamp(1rem,1.1rem+0.9vw,2.5rem)] whitespace-nowrap">
                     Last news from <span className="text-orange-500/90">Post Prime</span>
                 </h3>
             </motion.div>
 
             {/* 3. LINIE DOLNE */}
             <div className="flex flex-col items-center gap-2.5 w-full">
-                <Separator width="min" color="bg-neutral-700" />
+                <Separator width="min" color="bg-neutral-600" />
                 <Separator width="long" color="bg-neutral-700" />
             </div>
         </ScrollReveal>
