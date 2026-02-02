@@ -3,6 +3,8 @@
 import { motion, Variants } from "motion/react";
 import Separator from "../../ui/Separators";
 import ScrollReveal from "../../ui/ScrollReveal"; // Importujemy Twój nowy komponent
+import SlideType from "../../ui/SlideType";
+
 
 export default function HeroInfoBar() {
     const date = new Date();
@@ -15,17 +17,17 @@ export default function HeroInfoBar() {
     // Zostawiamy tylko warianty dla tekstu - ScrollReveal zajmie się resztą
     const textVariants: Variants = {
         hidden: { y: 20, opacity: 0, scale: 0.95 },
-        visible: { 
-            y: 0, 
-            opacity: 1, 
-            scale: 1, 
-            transition: { duration: 0.6, ease: "easeOut" } 
+        visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.6, ease: "easeOut" }
         }
     };
 
     return (
-        <ScrollReveal 
-            amount={0.3} 
+        <ScrollReveal
+            amount={0.3}
             stagger={0.15}
             // Możemy przekazać bazowe warianty opcji, jeśli chcemy nadpisać domyślny fadeUp
             className="relative w-full overflow-hidden flex flex-col items-center justify-center"
@@ -37,17 +39,21 @@ export default function HeroInfoBar() {
             </div>
 
             {/* 2. TREŚĆ - używa własnych textVariants, ale wyzwalanych przez rodzica */}
-            <motion.div 
-                variants={textVariants} 
-                className="flex items-center flex-col md:flex-row justify-center gap-4 w-full px-4 my-5 lg:my-10"
+            <motion.div
+                variants={textVariants}
+                className="flex items-center flex-col md:flex-row justify-center  gap-4 w-full px-4 my-5 lg:my-10"
             >
-                <div className="bg-orange-500/80 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-6 py-1 capitalize tracking-tighter shadow-xl shrink-0">
+                <div className=" bg-orange-500/80 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 capitalize tracking-tighter shadow-xl shrink-0">
                     {formattedDate}
                 </div>
 
-                <h3 className="text-gray-50 font-black uppercase tracking-tighter text-[clamp(1rem,1.1rem+0.9vw,2.5rem)] whitespace-nowrap">
-                    Last news from <span className="text-orange-500/90">Post Prime</span>
-                </h3>
+                <SlideType
+                    text="Last news from "
+                    highlight="Post Prime"
+                    highlightColor="text-orange-500/90"
+                    className="text-gray-50 font-black uppercase tracking-tight text-[clamp(1rem,1.2rem+0.9vw,3rem)] whitespace-nowrap"
+                    delay={0.2} // Lekki delay, żeby data weszła pierwsza
+                />
             </motion.div>
 
             {/* 3. LINIE DOLNE */}

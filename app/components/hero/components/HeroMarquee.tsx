@@ -29,7 +29,7 @@ export default function HeroMarquee({ title, className = "", direction = "left" 
             >
                 {/* PĘTLA MARQUEE */}
                 <motion.div 
-                    className="flex items-center gap-8 whitespace-nowrap font-black uppercase text-[clamp(1.25rem,1.5rem+1vw,3rem)] tracking-tighter will-change-transform"
+                    className="flex items-center gap-8 whitespace-nowrap font-black uppercase text-[clamp(1rem,1.25rem+0.8vw,3rem)] tracking-tighter will-change-transform"
                     initial={{ x: "0%" }}
                     animate={{ x: "-50%" }}
                     transition={{ 
@@ -48,7 +48,7 @@ export default function HeroMarquee({ title, className = "", direction = "left" 
                             <span className="inline-block">{word}</span>
                             <Icon 
                                 name="Basketball" 
-                                className="text-orange-500 text-[0.7em] shrink-0" 
+                                className="text-orange-500 text-lg md:text-xl shrink-0" 
                             />
                         </div>
                     ))}

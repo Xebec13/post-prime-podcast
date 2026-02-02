@@ -39,7 +39,6 @@ export default function HeroBio() {
                 <Image
                     src="/postprime-hero.png"
                     alt="Background"
-                    
                     fill
                     className="object-contain"
                     sizes="(max-width: 768px) 30vw, 15vw"
@@ -48,7 +47,7 @@ export default function HeroBio() {
 
             {/* 3. LAMPA (Dekoracja) */}
             {/* Pozycjonowana absolutnie u góry, np. po prawej stronie, nad zdjęciem */}
-            <div className="absolute -top-1/8 left-1/4 z-10 pointer-events-none">
+            <div className="absolute -top-3 left-1/4 z-10 pointer-events-none">
                 <Lamp length="short" />
             </div>
 

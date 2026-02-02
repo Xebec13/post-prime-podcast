@@ -1,7 +1,7 @@
 "use client";
 
 import AboutCard from "./AboutCard";
-import Separator from "../ui/Separators";
+import AboutTitle from "./AboutTitle";
 import ScrollReveal from "../ui/ScrollReveal";
 
 // Dane z dodanymi socialami
@@ -44,32 +44,15 @@ const hosts = [
 
 export default function About() {
     return (
-        <section id="about" className="relative py-15 bg-neutral-900/50">
+        <section id="about" className="relative py-10 md:py-15 bg-neutral-900/50">
 
             {/* === NAGŁÓWEK SEKCJI === */}
             <ScrollReveal 
                 amount={0.5} 
                 stagger={0.15} 
-                className="w-full flex flex-col items-center justify-center pb-15 px-4"
+                className="w-full flex flex-col items-center justify-center pb-10 md:pb-15 px-4"
             >
-                {/* 1. LINIE GÓRNE */}
-                <div className="flex flex-col items-center gap-2.5 w-full">
-                    <Separator width="long" color="bg-neutral-700" />
-                    <Separator width="mid" color="bg-neutral-700/50" />
-                </div>
-
-                {/* 2. TREŚĆ (H2) */}
-                <div className="my-10 text-center">
-                    <h2 className="font-playfair text-neutral-950 bg-orange-50 px-10 py-1.5 font-black capitalize tracking-tighter text-[clamp(2rem,2.5rem+1vw,4rem)] whitespace-nowrap shadow-lg">
-                        Autorzy
-                    </h2>
-                </div>
-
-                {/* 3. LINIE DOLNE */}
-                <div className="flex flex-col items-center gap-2.5 w-full">
-                    <Separator width="min" color="bg-neutral-700/50" />
-                    <Separator width="long" color="bg-neutral-700" />
-                </div>
+                <AboutTitle title="Autorzy" />
             </ScrollReveal>
 
             {/* === GRID Z KARTAMI === */}
@@ -77,7 +60,7 @@ export default function About() {
                 <ScrollReveal 
                     amount={0.2} 
                     stagger={0.2} 
-                    className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+                    className="w-full grid grid-cols-1 lg:grid-cols-3 place-items-center gap-4 md:gap-5"
                 >
                     {hosts.map((host) => (
                         <AboutCard

@@ -29,7 +29,7 @@ export default function Navbar() {
 
     return (
         <NavbarAnimation isVisible={isVisible}>
-            <nav className="w-full" aria-label="Główna nawigacja">
+            <nav className="w-full px-5" aria-label="Główna nawigacja">
                 <ul
                     onMouseLeave={() => setHoverIndex(null)}
                     className="relative isolate grid h-10 grid-cols-6 list-none border-b border-neutral-600 bg-neutral-900 text-inherit"
