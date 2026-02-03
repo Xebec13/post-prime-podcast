@@ -22,14 +22,14 @@ export default function HeroMarquee({ title, className = "", direction = "left" 
             
             {/* KONTENER WEJŚCIA */}
             <motion.div 
-                className={`flex items-center w-full h-full ${isRight ? "scale-x-[-1]" : ""} will-change-transform`}
+                className={`relative flex items-center w-full h-full ${isRight ? "scale-x-[-1]" : ""} will-change-transform`}
                 initial={{ x: "100%" }} 
                 animate={{ x: 0 }}
                 transition={{ duration: ENTER_DURATION, ease: [0.25, 1, 0.5, 1], delay: ENTER_DELAY }}
             >
                 {/* PĘTLA MARQUEE */}
                 <motion.div 
-                    className="flex items-center gap-8 whitespace-nowrap font-black uppercase text-[clamp(1rem,1.25rem+0.8vw,3rem)] tracking-tighter will-change-transform"
+                    className="relative flex items-center gap-8 whitespace-nowrap font-black uppercase text-[clamp(1rem,1.25rem+0.8vw,3rem)] tracking-tighter will-change-transform"
                     initial={{ x: "0%" }}
                     animate={{ x: "-50%" }}
                     transition={{ 

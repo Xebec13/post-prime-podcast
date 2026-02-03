@@ -39,7 +39,7 @@ export default function About() {
                 <ScrollReveal 
                     amount={0.2} 
                     stagger={0.2} 
-                    className="w-full grid grid-cols-1 lg:grid-cols-3 place-items-center gap-3 md:gap-5"
+                    className="w-full grid grid-cols-1 md:grid-cols-3 place-items-center gap-3 md:gap-5"
                 >
                     {HOSTS.map((host) => (
                         <AboutCard key={host.id} host={host} />

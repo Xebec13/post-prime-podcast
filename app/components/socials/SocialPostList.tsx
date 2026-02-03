@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "motion/react";
+import { motion} from "motion/react";
 import { IconLink } from "../ui/SmartLinks";
 import Icon from "../ui/Icon";
 import ScrollReveal from "../ui/ScrollReveal";
@@ -16,25 +16,21 @@ export interface PostItem {
     url: string;
 }
 
-const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
-};
+
 
 export default function SocialPostList({ posts, brandColor }: { posts: PostItem[], brandColor: string }) {
     // Wyciągamy klasę koloru hover (np. text-blue-500 z bg-blue-500/90)
     const hoverTextColor = brandColor.replace("bg-", "text-").replace("/90", "");
 
     return (
-        <ScrollReveal stagger={0.1} className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
+        <ScrollReveal stagger={0.2} className="relative grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
             {posts.map((post) => (
                 <motion.div
                     key={post.id}
-                    variants={itemVariants}
                     className="group relative flex flex-col bg-neutral-900/40 overflow-hidden border border-transparent hover:border-white/10 transition-all duration-300 h-full"
                 >
                     <div className="relative w-full aspect-square md:aspect-4/3 overflow-hidden shrink-0">
-                        <Image src={post.image} alt="Post" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <Image src={post.image} alt="Post" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity ${brandColor}`} />
                     </div>
 

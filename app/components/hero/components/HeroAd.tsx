@@ -59,6 +59,7 @@ export default function HeroAd({ images }: HeroAdProps) {
                     <Image 
                         src={currentSrc}
                         alt="Ad Background"
+                        loading="eager"
                         fill
                         className="object-cover blur-xl scale-110 brightness-[0.4]"
                     />

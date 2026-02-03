@@ -47,7 +47,7 @@ const textRevealVariants: Variants = {
 
 export default function AboutCard({ host }: { host: Host }) {
     return (
-        <motion.div variants={cardVariants} className="relative h-full w-3/4 min-w-50 max-w-lg lg:max-w-full flex flex-col gap-4">
+        <motion.div variants={cardVariants} className="relative h-full w-1/2 sm:w-3/4 min-w-50 max-w-lg lg:max-w-full flex flex-col gap-4">
             
             {/* GRAFIKA */}
             <motion.div
@@ -55,7 +55,7 @@ export default function AboutCard({ host }: { host: Host }) {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
                 style={{ backgroundImage: `url(${host.hostBg})` }}
-                className="grid place-items-center w-full aspect-square overflow-hidden bg-cover bg-center rounded-sm shadow-xl"
+                className="relative grid place-items-center w-full aspect-square overflow-hidden bg-cover bg-center rounded-sm shadow-xl"
             >
                 <div className="relative size-2/3 border-10 border-white shadow-2xl overflow-hidden">
                     <div 
@@ -69,21 +69,21 @@ export default function AboutCard({ host }: { host: Host }) {
             </motion.div>
 
             {/* DANE I SOCIALE */}
-            <div className="flex items-start justify-between w-full border-l-2 border-orange-500/50 pl-2">
+            <div className="flex items-start gap-1 justify-between w-full p-1">
                 <div className="flex flex-col gap-1 overflow-hidden">
                     <div className="overflow-hidden">
-                        <motion.h3 variants={textRevealVariants} className="text-gray-100 text-base md:text-lg lg:text-2xl font-black uppercase leading-none tracking-tight">
+                        <motion.h3 variants={textRevealVariants} className="relative text-gray-100 text-sm md:text-lg lg:text-xl font-black uppercase leading-none tracking-tight">
                             {host.name}
                         </motion.h3>
                     </div>
                     <div className="overflow-hidden">
-                        <motion.p variants={textRevealVariants} className="text-neutral-400 text-xs md:text-sm font-bold uppercase tracking-widest">
+                        <motion.p variants={textRevealVariants} className="relative text-neutral-400 text-[10px] md:text-sm lg:text-base font-bold uppercase tracking-widest">
                             {host.role}
                         </motion.p>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-1 md:gap-2">
+                <div className="shrink-0 flex items-center gap-1 md:gap-2">
                     {host.socials && Object.entries(host.socials).map(([platform, url]) => (
                         <Link key={platform} href={url} target="_blank" className="size-6 text-neutral-500 hover:text-orange-500 transition-all hover:scale-110">
                             <Icon name={platform.charAt(0).toUpperCase() + platform.slice(1) as IconName} />

@@ -62,8 +62,8 @@ export default function HeroEpInfo({ title, statistics }: HeroEpInfoProps) {
 
             {/* === TREŚĆ === */}
             {/* relative z-10 sprawia, że tekst jest NAD piłką */}
-            <div className="relative z-10 p-5 text-gray-50">
-                <p className="text-[clamp(1rem,1rem+0.9vw,3rem)] font-semibold leading-tight drop-shadow-md">
+            <div className="relative h-full z-10 p-1.5 md:p-5 text-gray-50">
+                <p className="text-[clamp(0.6rem,0.8rem+0.5vw,3rem)] font-semibold leading-tight drop-shadow-md">
                     {title}
                 </p>
             </div>
@@ -72,7 +72,7 @@ export default function HeroEpInfo({ title, statistics }: HeroEpInfoProps) {
             <div className="relative z-10 self-end inline-flex p-3 gap-3 text-sm font-medium text-gray-50">
                 <div className="inline-flex justify-center items-center gap-1.5 p-1 bg-neutral-900/40 rounded-md backdrop-blur-sm shadow-sm">
                     <span><Icon name="Like" className="text-[10px] text-orange-500" /></span>
-                    <p>{Number(statistics.viewCount).toLocaleString()}</p>
+                    <p>{Number(statistics.viewCount || 0).toLocaleString('pl-PL')}</p>
                 </div>
                 <div className="inline-flex justify-center items-center gap-1.5 p-1 bg-neutral-900/40 rounded-md backdrop-blur-sm shadow-sm">
                     <span><Icon name="View" className="text-[10px] text-orange-500" /></span>

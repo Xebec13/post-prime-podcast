@@ -67,7 +67,7 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
                         <motion.div
                             key={item.key}
                             variants={iconWrapperVariants}
-                            className="size-full overflow-hidden p-0.5"
+                            className="relative size-full overflow-hidden p-0.5"
                         >
                             <button
                                 onClick={() => setActivePlatform(item.key)}

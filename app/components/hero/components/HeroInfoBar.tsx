@@ -44,7 +44,7 @@ export default function HeroInfoBar({
             {/* 2. TREŚĆ */}
             <motion.div
                 variants={textVariants}
-                className="flex items-center flex-col md:flex-row justify-center gap-4 w-full px-4 my-5 lg:my-10"
+                className="relative flex items-center flex-col md:flex-row justify-center gap-4 w-full px-4 my-5 lg:my-10"
             >
                 {/* DATA */}
                 <div className="bg-orange-500/80 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 capitalize tracking-tighter shadow-xl shrink-0">
@@ -56,7 +56,7 @@ export default function HeroInfoBar({
                     text={infoLabel}
                     highlight={highlight}
                     highlightColor="text-orange-500/90"
-                    className="text-gray-50 font-black uppercase tracking-tight text-[clamp(1rem,1.2rem+0.9vw,3rem)] whitespace-nowrap"
+                    className="text-gray-50 font-black uppercase tracking-tight text-[clamp(0.8rem,1rem+0.9vw,3rem)] whitespace-nowrap"
                     delay={0.2}
                 />
             </motion.div>

@@ -29,7 +29,7 @@ export default function Separator({ width = "long", color = "bg-white", classNam
         <motion.div
             variants={lineVariants}
         
-            className={`${widthMap[width]} ${color} h-[1.5px] will-change-transform origin-center ${className}`}
+            className={`${widthMap[width]} ${color} relative h-[1.5px] will-change-transform origin-center ${className}`}
         />
     );
 }

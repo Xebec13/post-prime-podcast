@@ -1,4 +1,4 @@
-import PostList, { PostItem } from "./SocialPostList";
+import SocialPostList, { PostItem } from "./SocialPostList";
 import SocialTitle from "./SocialTitle";
 import { SmartLinkLg } from "../ui/SmartLinks";
 
@@ -16,7 +16,7 @@ export default function SocialSection({ id, title, brandColor, posts, channelUrl
             <SocialTitle title={title} brandColor={brandColor} />
 
             <div className="px-4 md:px-10">
-                <PostList posts={posts} brandColor={brandColor} />
+                <SocialPostList posts={posts} brandColor={brandColor} />
             </div>
 
             <div className="text-sm md:text-base flex px-5 justify-end relative right-10 z-10 text-gray-50 transition-colors hover:text-white">

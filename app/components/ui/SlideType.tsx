@@ -61,7 +61,7 @@ export default function SlideType({
                 // USUNIĘTO: initial, whileInView, viewport (teraz słucha rodzica!)
                 variants={boxVariants}
                 transition={{ delay }} 
-                className={`flex items-center ${className}`}
+                className={`relative flex items-center ${className}`}
             >
                 <motion.span variants={textContainerVariants} className="whitespace-pre">
                     

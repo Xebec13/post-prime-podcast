@@ -1,3 +1,5 @@
+import { getLatestVideoDetails } from "../utils/youtube";
+import { getNBALiveScores } from "../utils/nba";
 import {
     HeroLayout,
     HeroEpInfo,
@@ -10,25 +12,14 @@ import {
     HeroBio,
     HeroInfoBar,
 } from "./components";
-import { NBAGame } from "./components/HeroScore";
 import { SocialStatItem } from "./components/HeroSocialStats";
-export default function Hero() {
-    // Symulacja danych z API
-    const nbaGames: NBAGame[] = [
-        {
-            id: "1",
-            status: "FINAL",
-            awayTeam: { code: "LAL", logo: "/teams/lal.png", score: 112 },
-            homeTeam: { code: "BOS", logo: "/teams/bos.png", score: 105 }
-        },
-        {
-            id: "2",
-            status: "LIVE - Q3",
-            awayTeam: { code: "GSW", logo: "/teams/gsw.png", score: 88 },
-            homeTeam: { code: "PHX", logo: "/teams/phx.png", score: 92 }
-        },
-        // ... więcej meczów
-    ]
+
+export default async function Hero() {
+    // 1. POBIERANIE DANYCH (Równolegle dla wydajności)
+    const videoData = await getLatestVideoDetails();
+    const nbaData = await getNBALiveScores();
+
+    // 2. DATA DLA INFOBARA
     const date = new Date();
     const serverFormattedDate = date.toLocaleDateString("pl-PL", {
         month: "long",
@@ -40,10 +31,11 @@ export default function Hero() {
         label: "Last news from ",
         highlight: "Post Prime"
     };
-    // === 1. DANE ===
-    const videoData = {
-        videoId: "Iq5GNa7sPjY",
-        title: "Błąd pobierania danych z YouTube",
+
+    // 3. FALLBACK WIDEO (Gdyby API YouTube zawiodło)
+    const finalVideo = videoData || {
+        videoId: "dQw4w9WgXcQ", 
+        title: "Błąd ładowania najnowszego odcinka",
         thumbnail: "/postprime-hero.png",
         statistics: { viewCount: "0", likeCount: "0", commentCount: "0" }
     };
@@ -54,11 +46,13 @@ export default function Hero() {
         src: "/pp.png",
         bg: "/pp-wooden-floor.jpg"
     };
+
     const bioData = {
         intro: "Po najlepszych latach odległej już młodości, zaorani przez dorosłość i obowiązki oraz po latach pisania dla czołowych tytułów dotyczących amerykańskiej koszykówki w Polsce, ",
         names: "Wooden, Marcin, Piotrek",
         outro: " postanowili zrobić coś razem. Piszemy tak jak zawsze chcieliśmy, piszemy w swoim tempie. Chcemy pisać dobrze. Robić coś wyjątkowego. Żyć basketem. I chcemy przy tym dobrej zabawy. Dla siebie i dla Ciebie Czytelniku!"
     };
+
     const socialData: SocialStatItem[] = [
         {
             key: "youtube",
@@ -85,50 +79,60 @@ export default function Hero() {
             stats: { subscribers: "80K", views: "2M", goals: "100K" }
         },
     ];
+
     const adImages = [
-        "/pp-fund.jpg",       
-        "/pp-wba.png",                             
-        "/pp-obl.jpg",       
+        "/pp-fund.jpg",
+        "/pp-wba.png",
+        "/pp-obl.jpg",
         "/pp-ad.jpg"
     ];
-    // === 2. SKŁADANIE (COMPOSITION) ===
-    // Tworzymy gotowe elementy, karmiąc je danymi
+
+    // === 4. SKŁADANIE (COMPOSITION) ===
     return (
         <HeroLayout
-            // Statyczne komponenty po prostu przekazujemy
-            scoreSlot={<HeroScore games={nbaGames} dateLabel="NBA Live Scores" />}
-            adSlot={<HeroAd images={adImages} />}
-            socialSlot={
-                <HeroSocialStats items={socialData} />
+            // Przekazujemy pobrane dane NBA
+            scoreSlot={
+                <HeroScore
+                    yesterdayGames={nbaData.yesterday}
+                    todayGames={nbaData.today}
+                    tomorrowGames={nbaData.tomorrow}
+                    labels={nbaData.labels}
+                />
             }
+            adSlot={<HeroAd images={adImages} />}
+            socialSlot={<HeroSocialStats items={socialData} />}
             bioSlot={
-                <HeroBio intro={bioData.intro}
+                <HeroBio 
+                    intro={bioData.intro}
                     highlight={bioData.names}
-                    outro={bioData.outro} />}
-            infoBarSlot={<HeroInfoBar 
+                    outro={bioData.outro} 
+                />
+            }
+            infoBarSlot={
+                <HeroInfoBar
                     formattedDate={serverFormattedDate}
                     infoLabel={infoData.label}
                     highlight={infoData.highlight}
-                />}
-
-            // Komponenty z danymi karmimy tutaj
-            logoSlot={
-                <HeroLogo logoSrc={logoData.src} bgSrc={logoData.bg} />
+                />
             }
-
+            logoSlot={<HeroLogo logoSrc={logoData.src} bgSrc={logoData.bg} />}
             marqueeSlot={
                 <>
                     <HeroMarquee title={marqueeTitles} direction="left" className="bg-neutral-800/80 h-1/2" />
                     <HeroMarquee title={marqueeTitles} direction="right" className="bg-neutral-800/30 h-1/2" />
                 </>
             }
-
             videoInfoSlot={
-                <HeroEpInfo title={videoData.title} statistics={videoData.statistics} />
+                <HeroEpInfo
+                    title={finalVideo.title}
+                    statistics={finalVideo.statistics}
+                />
             }
-
             videoContentSlot={
-                <HeroEpVideo videoId={videoData.videoId} thumbnail={videoData.thumbnail} />
+                <HeroEpVideo
+                    videoId={finalVideo.videoId}
+                    thumbnail={finalVideo.thumbnail}
+                />
             }
         />
     );

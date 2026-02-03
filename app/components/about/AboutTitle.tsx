@@ -15,7 +15,7 @@ const containerVariants: Variants = {
 export default function AboutTitle({ title = "Autorzy" }: { title?: string }) {
     return (
         <motion.div 
-            className="w-full flex flex-col items-center justify-center pb-10 md:pb-15 px-4"
+            className="relative w-full flex flex-col items-center justify-center pb-10 md:pb-15 px-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

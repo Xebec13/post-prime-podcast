@@ -15,7 +15,7 @@ export default function ScrollReveal({
     children, 
     amount = 0.2,
     className = "",
-    stagger = 0.15,
+    stagger = 0.1,
     yOffset = 40
 }: ScrollRevealProps) {
     
@@ -42,7 +42,7 @@ export default function ScrollReveal({
             whileInView="visible"
             viewport={{ once: true, amount }}
             variants={combinedVariants}
-            className={className}
+            className={`relative ${className}`}
         >
             {children}
         </motion.div>

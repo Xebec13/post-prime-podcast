@@ -35,23 +35,23 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
     // Mapowanie scrolla na ruch i obrót piłek
     const ballYRight = useTransform(scrollYProgress, [0, 1], [-100, 1000]);
     const ballYLeft = useTransform(scrollYProgress, [0, 1], [-50, 800]);
-    const ballRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
+    const ballRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
     const ballOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     return (
-        <div ref={containerRef} className="relative w-full">
+        <div ref={containerRef}  className="relative w-full">
 
             {/* === ELEMENTY PARALAKSY (PIŁKI) === */}
             <motion.div
                 style={{ y: ballYRight, rotate: ballRotate, opacity: ballOpacity }}
-                className="absolute top-0 right-25 z-0 text-orange-500/40 pointer-events-none"
+                className="absolute top-0 right-10 md:right-25 z-0 text-orange-500/40 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
             
             <motion.div
                 style={{ y: ballYLeft, rotate: ballRotate, opacity: ballOpacity }}
-                className="absolute top-0 left-15 z-0 text-orange-500/50 pointer-events-none"
+                className="absolute top-0 left-5 md:left-15 z-0 text-orange-500/50 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
@@ -59,7 +59,7 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
             {/* === GRID Z FILMAMI === */}
             <ScrollReveal
                 stagger={0.1}
-                className="relative grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 z-10"
+                className="relative grid grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-5 z-10"
             >
                 {videos.map((video) => {
                     const isActive = activeId === video.id;
@@ -74,7 +74,7 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
                             {/* TŁO ANIMOWANE / PODŚWIETLENIE AKTYWNEGO */}
                             <span className={`
                                 absolute inset-0 rounded-xl transition-all duration-300 ease-out z-0
-                                ${isActive ? "bg-orange-500/20 scale-100" : "bg-transparent scale-95 group-hover:scale-100 group-hover:bg-orange-500/30"}
+                                ${isActive ? "bg-orange-500/90 scale-100" : "bg-transparent scale-95 group-hover:scale-100 group-hover:bg-orange-500/30"}
                             `} />
 
                             {/* MINIATURKA */}
@@ -82,6 +82,7 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
                                 <Image
                                     src={video.thumbnail}
                                     alt={video.title}
+                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -95,14 +96,16 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
                             </div>
 
                             {/* TREŚĆ */}
-                            <div className="relative flex flex-col gap-1.5 px-1 md:px-2">
-                                <h4 className={`
-                                    text-sm lg:text-base font-bold leading-tight tracking-tight line-clamp-2 transition-colors
-                                    ${isActive ? "text-orange-500" : "text-gray-200 group-hover:text-white"}
+                            <div className="relative grid grid-rows-3 gap-1.5 px-1 md:px-2">
+                                <h4 className={`row-span-2 min-h-5
+                                    text-xs md:text-sm lg:text-base font-bold leading-tight tracking-tight line-clamp-2 transition-colors 
+                                    ${isActive ? "text-white" : "text-gray-50 group-hover:text-white"}
                                 `}>
                                     {video.title}
                                 </h4>
-                                <div className="flex gap-3 text-[10px] text-neutral-400 font-medium uppercase tracking-wider group-hover:text-neutral-200 transition-colors">
+                                {/* TOOLTIP */}
+   
+                                <div className="row-span-1 flex md:justify-end items-end gap-3 text-[8px] md:text-[10px] text-gray-50 font-medium uppercase tracking-wider group-hover:text-gray-100 transition-colors">
                                     <span>{video.views}</span>
                                     <span>{video.date}</span>
                                 </div>

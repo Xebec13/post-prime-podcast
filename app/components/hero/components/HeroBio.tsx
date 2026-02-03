@@ -92,15 +92,15 @@ export default function HeroBio({ intro, highlight, outro }: HeroBioProps) {
 
             {/* === TREŚĆ === */}
             <motion.div 
-                className="relative z-10 flex flex-col justify-center size-full p-4 bg-neutral-800/30 backdrop-blur-[1.5px] text-gray-50 md:p-6 overflow-hidden will-change-[opacity]"
+                className="relative z-10 flex flex-col justify-center size-full p-4 bg-neutral-800/30 backdrop-blur-[1.5px] text-gray-50 md:p-6  will-change-[opacity]"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
             >
-                <p className="font-semibold text-justify leading-4 md:leading-5 lg:leading-7 tracking-wide text-[clamp(1rem,0.5rem+0.3vw,2.5rem)]">
+                <p className="font-semibold text-justify leading-relaxed md:leading-relaxed lg:leading-7 tracking-wide text-[clamp(0.5rem,0.5rem+0.4vw,2rem)]">
                     
                     {/* DROP CAP */}
-                    <span className="float-left text-xl md:text-3xl lg:text-[2.5rem] font-black leading-1.5 md:leading-1 lg:leading-3 font-playfair text-orange-500/90 font-sans">
+                    <span className="float-left text-xl md:text-3xl lg:text-[2.5rem] font-black leading-1.5 md:leading-2 lg:leading-3 font-playfair text-orange-500/90 font-sans">
                         {firstLetter}
                     </span>
 

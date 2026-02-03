@@ -75,3 +75,93 @@ export async function getLatestVideoDetails(): Promise<YouTubeVideoDetails | nul
     return null;
   }
 }
+
+
+
+// === TYPY WEWNĘTRZNE DLA API (Google v3) ===
+
+interface YTThumbnail {
+  url: string;
+}
+
+interface YTThumbnails {
+  maxres?: YTThumbnail;
+  high?: YTThumbnail;
+  medium?: YTThumbnail;
+}
+
+interface YTPlaylistItem {
+  contentDetails: {
+    videoId: string;
+  };
+}
+
+interface YTVideoItem {
+  id: string;
+  snippet: {
+    title: string;
+    publishedAt: string;
+    thumbnails: YTThumbnails;
+  };
+  statistics: {
+    viewCount: string;
+    likeCount: string;
+    commentCount: string;
+  };
+}
+
+interface YTPlaylistResponse {
+  items: YTPlaylistItem[];
+}
+
+interface YTVideoResponse {
+  items: YTVideoItem[];
+}
+
+// === FUNKCJA POBIERAJĄCA ===
+
+export async function getLatestVideosList(count: number = 9): Promise<YouTubeVideoDetails[]> {
+  const apiKey = process.env.YOUTUBE_API_KEY;
+  const uploadsId = process.env.YOUTUBE_UPLOADS_ID;
+
+  if (!apiKey || !uploadsId) return [];
+
+  try {
+    // 1. Pobieramy ID filmów
+    const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId=${uploadsId}&maxResults=${count}&key=${apiKey}`;
+    const playlistRes = await fetch(playlistUrl, { next: { revalidate: 600 } });
+    
+    if (!playlistRes.ok) return [];
+    const playlistData: YTPlaylistResponse = await playlistRes.json();
+    
+    if (!playlistData.items || playlistData.items.length === 0) return [];
+
+    const videoIds = playlistData.items.map(item => item.contentDetails.videoId).join(',');
+
+    // 2. Pobieramy statystyki i snippety zbiorczo
+    const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds}&key=${apiKey}`;
+    const statsRes = await fetch(statsUrl, { next: { revalidate: 600 } });
+    
+    if (!statsRes.ok) return [];
+    const statsData: YTVideoResponse = await statsRes.json();
+
+    return statsData.items.map((item): YouTubeVideoDetails => ({
+      videoId: item.id,
+      title: item.snippet.title,
+      thumbnail: 
+        item.snippet.thumbnails.maxres?.url || 
+        item.snippet.thumbnails.high?.url || 
+        item.snippet.thumbnails.medium?.url || 
+        "",
+      publishedAt: item.snippet.publishedAt,
+      statistics: {
+        viewCount: item.statistics.viewCount || "0",
+        likeCount: item.statistics.likeCount || "0",
+        commentCount: item.statistics.commentCount || "0",
+      },
+    }));
+  } catch (error) {
+    console.error("Błąd pobierania listy YT:", error);
+    return [];
+  }
+}
