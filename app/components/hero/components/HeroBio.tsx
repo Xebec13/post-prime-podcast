@@ -1,40 +1,80 @@
 "use client";
 
 import Image from "next/image";
+import { motion, Variants } from "motion/react";
 import Icon from "../../ui/Icon";
-import Lamp from "../../ui/Lamp"; // Import lampy
-import { motion } from "motion/react";
+import Lamp from "../../ui/Lamp";
 
-const bioParts = [
-    "o najlepszych latach odległej już młodości, zaorani przez dorosłość i obowiązki oraz po latach pisania dla czołowych tytułów dotyczących amerykańskiej koszykówki w Polsce, ",
-    "Wooden, Marcin, Piotrek",
-    " postanowili zrobić coś razem. Piszemy tak jak zawsze chcieliśmy, piszemy w swoim tempie. Chcemy pisać dobrze. Robić coś wyjątkowego. Żyć basketem. I chcemy przy tym dobrej zabawy. Dla siebie i dla Ciebie Czytelniku!"
-];
+// === KONFIGURACJA ANIMACJI (TYPOWANA) ===
 
-const firstLetter = "P";
+const ballVariants: Variants = {
+    hidden: { 
+        y: 30, 
+        rotate: -30, 
+        opacity: 0 
+    },
+    visible: { 
+        y: 0, 
+        rotate: 0, 
+        opacity: 1, 
+        transition: { duration: 0.8, ease: "easeOut" } 
+    }
+};
 
-export default function HeroBio() {
+const bgImageVariants: Variants = {
+    hidden: { 
+        filter: "brightness(0) blur(0px)" 
+    },
+    visible: { 
+        filter: "brightness(1) blur(1.5px)", 
+        transition: { duration: 1.2, ease: "easeInOut" } 
+    }
+};
+
+const textVariants: Variants = {
+    hidden: { 
+        opacity: 0 
+    },
+    visible: { 
+        opacity: 1, 
+        transition: { duration: 0.5, delay: 0.8 } 
+    }
+};
+
+// === INTERFEJS PROPSÓW ===
+interface HeroBioProps {
+    intro: string;
+    highlight: string;
+    outro: string;
+}
+
+export default function HeroBio({ intro, highlight, outro }: HeroBioProps) {
+    
+    // Logika wycięcia pierwszej litery (zabezpieczona przed pustym stringiem)
+    const firstLetter = intro ? intro.charAt(0) : "";
+    const restOfIntro = intro ? intro.slice(1) : "";
+
     return (
         <div className="relative size-full overflow-hidden bg-neutral-900 rounded-xl">
             
-            {/* === TŁO (DODANE ELEMENTY) === */}
+            {/* === TŁO === */}
             
-            {/* 2. Ikona Piłki po lewej */}
+            {/* 1. Ikona Piłki */}
             <motion.div 
-                className="absolute -left-15 -bottom-1/4 text-orange-500/40 will-change-transform "
-                initial={{ y: 30, rotate: -30, opacity: 0 }}
-                animate={{ y: 0, rotate: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute -left-15 -bottom-1/4 text-orange-500/40 will-change-transform"
+                variants={ballVariants}
+                initial="hidden"
+                animate="visible"
             >
                 <Icon name="Basketball" className="text-[clamp(1.5rem,8rem+5vw,15rem)]" />
             </motion.div>
 
-            {/* 1. Zdjęcie po prawej */}
+            {/* 2. Zdjęcie tła */}
             <motion.div 
                 className="absolute -right-1/8 top-0 w-3/4 h-full opacity-30 will-change-[filter]"
-                initial={{ filter: "brightness(0) blur(0px)" }}
-                animate={{ filter: "brightness(1) blur(1.5px)" }}
-                transition={{ duration: 1.2, ease: "easeInOut" }}
+                variants={bgImageVariants}
+                initial="hidden"
+                animate="visible"
             >
                 <Image
                     src="/postprime-hero.png"
@@ -45,22 +85,17 @@ export default function HeroBio() {
                 />
             </motion.div>
 
-            {/* 3. LAMPA (Dekoracja) */}
-            {/* Pozycjonowana absolutnie u góry, np. po prawej stronie, nad zdjęciem */}
+            {/* 3. Lampa */}
             <div className="absolute -top-3 left-1/4 z-10 pointer-events-none">
                 <Lamp length="short" />
             </div>
 
-
-            {/* === PANEL TEKSTOWY === */}
+            {/* === TREŚĆ === */}
             <motion.div 
                 className="relative z-10 flex flex-col justify-center size-full p-4 bg-neutral-800/30 backdrop-blur-[1.5px] text-gray-50 md:p-6 overflow-hidden will-change-[opacity]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ 
-                    duration: 0.5, 
-                    delay: 0.8 
-                }}
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
             >
                 <p className="font-semibold text-justify leading-4 md:leading-5 lg:leading-7 tracking-wide text-[clamp(1rem,0.5rem+0.3vw,2.5rem)]">
                     
@@ -70,9 +105,13 @@ export default function HeroBio() {
                     </span>
 
                     {/* Reszta tekstu */}
-                    {bioParts[0]}
-                    <span className="font-bold text-orange-500">{bioParts[1]}</span>
-                    {bioParts[2]}
+                    {restOfIntro}
+                    
+                    <span className="font-bold text-orange-500">
+                        {highlight}
+                    </span>
+                    
+                    {outro}
                 </p>
             </motion.div>
         </div>

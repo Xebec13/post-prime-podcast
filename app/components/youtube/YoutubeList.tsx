@@ -5,16 +5,9 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, Variants } from "motion/react";
 import Icon from "../ui/Icon";
 import ScrollReveal from "../ui/ScrollReveal";
+import { VideoItem } from "./Youtube"; // Upewnij się, że nazwa pliku jest identyczna
 
-const recentVideos = Array.from({ length: 9 }).map((_, i) => ({
-    id: i,
-    title: `Episode ${101 + i}: Analysis of the Game and Future Prospects`,
-    views: "12K views",
-    date: "2 days ago",
-    thumbnail: "/postprime-hero.png"
-}));
-
-// Wariant dla pojedynczego kafelka (Wjazd z dołu + Fade)
+// Wariant dla kafelka (Wjazd + Fade)
 const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -24,20 +17,22 @@ const itemVariants: Variants = {
     }
 };
 
-export default function YoutubeList() {
-    // 1. Ref dla kontenera, żeby wiedzieć kiedy przewijamy tę sekcję
+interface YoutubeListProps {
+    videos: VideoItem[];
+    onVideoSelect: (video: VideoItem) => void;
+    activeId: string;
+}
+
+export default function YoutubeList({ videos, onVideoSelect, activeId }: YoutubeListProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // 2. Hook do śledzenia scrolla
-    // offset: ["start end", "end start"] -> animacja trwa od momentu, 
-    // gdy góra komponentu wejdzie w dół ekranu, aż dół komponentu wyjdzie górą.
+    // Paralaksa piłek - śledzimy scroll kontenera
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end start"]
     });
 
-    // 3. Mapujemy scroll (0 -> 1) na pozycję Y piłki (px) i obrót
-    // Piłka przesunie się o 300px w dół i obróci o 180 stopni w trakcie przewijania
+    // Mapowanie scrolla na ruch i obrót piłek
     const ballYRight = useTransform(scrollYProgress, [0, 1], [-100, 1000]);
     const ballYLeft = useTransform(scrollYProgress, [0, 1], [-50, 800]);
     const ballRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
@@ -46,43 +41,41 @@ export default function YoutubeList() {
     return (
         <div ref={containerRef} className="relative w-full">
 
-            {/* === SPADAJĄCA PIŁKA (Parallax) === */}
+            {/* === ELEMENTY PARALAKSY (PIŁKI) === */}
             <motion.div
-                style={{
-                    y: ballYRight,
-                    rotate: ballRotate,
-                    opacity: ballOpacity
-                }}
+                style={{ y: ballYRight, rotate: ballRotate, opacity: ballOpacity }}
                 className="absolute top-0 right-25 z-0 text-orange-500/40 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
+            
             <motion.div
-                style={{
-                    y: ballYLeft,
-                    rotate: ballRotate,
-                    opacity: ballOpacity
-                }}
+                style={{ y: ballYLeft, rotate: ballRotate, opacity: ballOpacity }}
                 className="absolute top-0 left-15 z-0 text-orange-500/50 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
+
             {/* === GRID Z FILMAMI === */}
-            {/* ScrollReveal z staggerem 0.1s wyzwoli warianty dzieci jeden po drugim */}
             <ScrollReveal
                 stagger={0.1}
                 className="relative grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 z-10"
             >
-                {recentVideos.map((video) => {
+                {videos.map((video) => {
+                    const isActive = activeId === video.id;
+
                     return (
                         <motion.div
                             key={video.id}
-                            // Podpinamy wariant elementu (ScrollReveal jako rodzic wywoła 'visible')
                             variants={itemVariants}
+                            onClick={() => onVideoSelect(video)}
                             className="relative group flex flex-col gap-3 p-1.5 md:p-3 rounded-xl cursor-pointer"
                         >
-                            {/* TŁO ANIMOWANE OD ŚRODKA */}
-                            <span className="absolute inset-0 bg-inherit rounded-xl scale-95 group-hover:scale-100 group-hover:bg-orange-500/30 transition-all duration-300 ease-out z-0" />
+                            {/* TŁO ANIMOWANE / PODŚWIETLENIE AKTYWNEGO */}
+                            <span className={`
+                                absolute inset-0 rounded-xl transition-all duration-300 ease-out z-0
+                                ${isActive ? "bg-orange-500/20 scale-100" : "bg-transparent scale-95 group-hover:scale-100 group-hover:bg-orange-500/30"}
+                            `} />
 
                             {/* MINIATURKA */}
                             <div className="relative w-full aspect-video overflow-hidden bg-neutral-900/90 rounded-lg shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
@@ -92,12 +85,21 @@ export default function YoutubeList() {
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-
+                                {isActive && (
+                                    <div className="absolute inset-0 bg-orange-500/10 flex items-center justify-center">
+                                        <div className="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">
+                                            Oglądasz
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {/* TREŚĆ */}
                             <div className="relative flex flex-col gap-1.5 px-1 md:px-2">
-                                <h4 className="text-sm lg:text-base font-bold text-gray-200 group-hover:text-white leading-tight tracking-tight line-clamp-2 transition-colors">
+                                <h4 className={`
+                                    text-sm lg:text-base font-bold leading-tight tracking-tight line-clamp-2 transition-colors
+                                    ${isActive ? "text-orange-500" : "text-gray-200 group-hover:text-white"}
+                                `}>
                                     {video.title}
                                 </h4>
                                 <div className="flex gap-3 text-[10px] text-neutral-400 font-medium uppercase tracking-wider group-hover:text-neutral-200 transition-colors">
@@ -109,7 +111,6 @@ export default function YoutubeList() {
                     );
                 })}
             </ScrollReveal>
-
         </div>
     );
 }

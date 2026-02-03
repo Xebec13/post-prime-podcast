@@ -31,8 +31,8 @@ export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
         >
             {/* 1. LINIE GÓRNE */}
             <div className="flex flex-col items-center gap-2.5 w-full">
-                <Separator width="long" color="bg-neutral-600" />
-                <Separator width="mid" color="bg-neutral-500" />
+                <Separator width="long" color="bg-neutral-500" />
+                <Separator width="mid" color="bg-red-500/70" />
             </div>
 
             {/* 2. TREŚĆ */}
@@ -40,13 +40,13 @@ export default function YoutubeTitle({ title = "YouTube" }: YoutubeTitleProps) {
                 <SlideType 
                     text={title}
                     // ZMIANA: Czerwone tło + Biały tekst
-                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-red-500/90 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
+                    className="font-playfair min-h-[3ch] text-gray-50 font-black bg-red-500/70 text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 tracking-tighter shadow-xl" 
                 />
             </div>
 
             {/* 3. LINIE DOLNE */}
             <div className="flex flex-col items-center gap-2.5 w-full">
-                <Separator width="min" color="bg-neutral-500" />
+                <Separator width="mid" color="bg-red-500/70" />
                 <Separator width="long" color="bg-neutral-600" />
             </div>
         </motion.div>

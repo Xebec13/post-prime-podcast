@@ -1,40 +1,53 @@
 "use client";
 
 import Link from "next/link";
+import { motion, Variants } from "motion/react";
 import Icon from "../ui/Icon";
+import { IconName } from "../ui/icons"; // Zakładam, że tu masz typ wszystkich ikon
 import { useNavbarScroll } from "./useNavbarScroll";
 import { useNavbarSpotlight } from "./useNavbarSpotlight";
-import NavbarAnimation from "./NavbarAnimation";
 
-// Zakładając, że IconName to unia stringów dostępna z Twojego komponentu Icon
-// Jeśli nie masz wyeksportowanego typu, możemy go stworzyć na podstawie nazw ikon.
+// === 1. TYPOWANIE BEZ ANY ===
 type NavItem = {
     href: string;
     label: string;
-    icon?: string; // Tutaj docelowo warto wstawić konkretny typ z komponentu Icon
+    // Używamy konkretnego typu IconName zamiast string
+    icon?: IconName; 
 };
 
-const navItems: NavItem[] = [
+const NAV_ITEMS: NavItem[] = [
     { href: "#home", label: "post prime" },
     { href: "#about", label: "autorzy" },
     { href: "#youtube", label: "youtube" },
     { href: "#facebook", label: "facebook" },
     { href: "#instagram", label: "instagram" },
-    { href: "#footer", label: "contact", icon: "Comment" }, 
+    { href: "#footer", label: "contact", icon: "Contact" }, 
 ];
 
+const navbarVariants: Variants = {
+    hidden: { y: -100 },
+    visible: { 
+        y: 0, 
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+    }
+};
+
 export default function Navbar() {
-    const { isVisible } = useNavbarScroll(); // Usunęliśmy setIsVisible, bo teraz rządzi scroll
+    const { isVisible } = useNavbarScroll();
     const { activeStyle, setHoverIndex } = useNavbarSpotlight();
 
     return (
-        <NavbarAnimation isVisible={isVisible}>
-            <nav className="w-full px-5" aria-label="Główna nawigacja">
+        <motion.header
+            variants={navbarVariants}
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            className="fixed top-0 left-0 z-50 w-full will-change-transform"
+        >
+            <nav className="w-full" aria-label="Główna nawigacja">
                 <ul
                     onMouseLeave={() => setHoverIndex(null)}
                     className="relative isolate grid h-10 grid-cols-6 list-none border-b border-neutral-600 bg-neutral-900 text-inherit"
                 >
-                    {/* --- SPOTLIGHT BLOB --- */}
                     <div
                         className={`absolute inset-0 -z-10 h-full w-1/6 origin-left transition-[transform,colors] duration-500 ease-in-out ${activeStyle.color}`}
                         style={{
@@ -43,8 +56,7 @@ export default function Navbar() {
                         aria-hidden="true"
                     />
                     
-                    {/* --- NAVIGATION LINKS --- */}
-                    {navItems.map((item, index) => (
+                    {NAV_ITEMS.map((item, index) => (
                         <li
                             key={item.href}
                             onMouseEnter={() => setHoverIndex(index)}
@@ -55,14 +67,13 @@ export default function Navbar() {
                                 aria-label={item.label}
                                 className="flex size-full items-center justify-center truncate text-[clamp(0.4rem,0.45rem+0.2vw,2rem)] transition-colors duration-500 ease-out hover:text-white"
                             >
+                                {/* Teraz TS wie, że item.icon to poprawny IconName */}
                                 {item.icon ? (
                                     <>
-                                        {/* Poprawka pkt 2: dynamiczna ikona */}
                                         <Icon 
-                                            name="Contact"
+                                            name={item.icon} 
                                             className="text-[clamp(0.4rem,0.4rem+0.4vw,2.75rem)]" 
                                         />
-                                        {/* Poprawka pkt 4: ukryty tekst dla czytników */}
                                         <span className="sr-only">{item.label}</span>
                                     </>
                                 ) : (
@@ -73,6 +84,6 @@ export default function Navbar() {
                     ))}
                 </ul>
             </nav>
-        </NavbarAnimation>
+        </motion.header>
     );
 }

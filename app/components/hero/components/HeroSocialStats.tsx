@@ -1,19 +1,20 @@
 "use client";
 
 import { motion, AnimatePresence, Variants } from "motion/react";
+import { useState } from "react";
 import Icon from "../../ui/Icon";
 import { IconName } from "../../ui/icons";
-import { useState } from "react";
 import { SmartLinkLg } from "../../ui/SmartLinks";
 
-type PlatformKey = "youtube" | "facebook" | "instagram";
+// === 1. TYPY (Eksportujemy je, bo przydadzą się w Hero.tsx) ===
+export type PlatformKey = "youtube" | "facebook" | "instagram";
 
-type HeroItem = {
+export type SocialStatItem = {
     key: PlatformKey;
     title: string;
     href: string;
     icon: IconName;
-    textColor: string; // PRZYWRÓCONE: Kolor tytułu (brandowy)
+    textColor: string;
     stats: {
         subscribers: string;
         views: string;
@@ -21,33 +22,7 @@ type HeroItem = {
     }
 }
 
-const heroLinks: HeroItem[] = [
-    {
-        key: "youtube",
-        title: "PostPrimePL",
-        href: "https://youtube.com",
-        icon: "Youtube",
-        textColor: "text-red-600", // YT Red
-        stats: { subscribers: "125K", views: "12M", goals: "200K" }
-    },
-    {
-        key: "facebook",
-        title: "@postprimepl",
-        href: "https://facebook.com",
-        icon: "Facebook",
-        textColor: "text-blue-600", // FB Blue
-        stats: { subscribers: "45K", views: "150K", goals: "50K" }
-    },
-    {
-        key: "instagram",
-        title: "@postprime_pl",
-        href: "https://instagram.com",
-        icon: "Instagram",
-        textColor: "text-fuchsia-500", // IG Fuchsia/Pink
-        stats: { subscribers: "80K", views: "2M", goals: "100K" }
-    },
-];
-
+// === 2. ANIMACJE (Wyciągnięte) ===
 const containerVariants: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1 } }
@@ -58,26 +33,34 @@ const iconWrapperVariants: Variants = {
     visible: { y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+// === 3. INTERFEJS PROPSÓW ===
 interface HeroSocialStatsProps {
     className?: string;
+    items: SocialStatItem[]; // Tablica z danymi przekazana z góry
 }
 
-export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps) {
-    const [activePlatform, setActivePlatform] = useState<PlatformKey>("youtube");
-    const currentItem = heroLinks.find(item => item.key === activePlatform) || heroLinks[0];
+export default function HeroSocialStats({ className = "", items }: HeroSocialStatsProps) {
+    // Inicjalizujemy stan pierwszym elementem z listy (zabezpieczenie jeśli lista byłaby pusta)
+    const [activePlatform, setActivePlatform] = useState<PlatformKey>(items[0]?.key || "youtube");
+    
+    // Szukamy aktualnego itemu w przekazanych propsach
+    const currentItem = items.find(item => item.key === activePlatform) || items[0];
+
+    // Zabezpieczenie na wypadek braku danych
+    if (!currentItem) return null;
 
     return (
         <div className={`relative flex flex-col size-full overflow-hidden ${className}`}>
 
             {/* === GÓRA: PASEK IKON === */}
             <motion.div
-                className="relative z-20 grid grid-cols-3 place-items-center will-change-transform h-1/4 shrink-0  bg-neutral-900"
+                className="relative z-20 grid grid-cols-3 place-items-center will-change-transform h-1/4 shrink-0 bg-neutral-900"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
             >
-                {heroLinks.map((item) => {
+                {items.map((item) => {
                     const isActive = activePlatform === item.key;
 
                     return (
@@ -104,7 +87,7 @@ export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps
                 })}
             </motion.div>
 
-            {/* === DÓŁ: TREŚĆ (Statystyki) === */}
+            {/* === DÓŁ: TREŚĆ === */}
             <div className="relative z-10 flex-1 size-full overflow-hidden bg-neutral-900/50">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -117,7 +100,6 @@ export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps
                     >
                         {/* Tytuł */}
                         <div className="flex justify-between items-center ">
-                            {/* ZMIANA: Używamy currentItem.textColor (brandowy) */}
                             <h3 className={`text-xs font-bold tracking-tight md:text-sm lg:text-lg ${currentItem.textColor}`}>
                                 {currentItem.title}
                             </h3>
@@ -126,8 +108,8 @@ export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps
                             </div>
                         </div>
 
-                        {/* Statystyki - zmiana na tabular-nums dla liczb */}
-                        <div className="flex flex-col justify-center space-y-1 font-medium text-gray-50  tabular-nums">
+                        {/* Statystyki */}
+                        <div className="flex flex-col justify-center space-y-1 font-medium text-gray-50 tabular-nums">
                             <div className="flex justify-between items-center border-b-2 border-orange-500/10 pb-1">
                                 <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Subscribers</span>
                                 <span className="text-[10px] md:text-xs lg:text-sm font-black">{currentItem.stats.subscribers}</span>
@@ -136,7 +118,6 @@ export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps
                                 <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Total Views</span>
                                 <span className="text-[10px] md:text-xs lg:text-sm font-black">{currentItem.stats.views}</span>
                             </div>
-                            {/* Goal z wyróżnieniem */}
                             <div className="mt-4 flex justify-between items-end border-b-2 text-gray-300 pb-1">
                                 <span className="text-[11px] md:text-xs lg:text-sm uppercase tracking-widest ">Target Goal</span>
                                 <span className="text-[11px] md:text-xs lg:text-sm font-black ">{currentItem.stats.goals}</span>
@@ -146,7 +127,6 @@ export default function HeroSocialStats({ className = "" }: HeroSocialStatsProps
                     </motion.div>
                 </AnimatePresence>
             </div>
-
         </div>
     )
 }

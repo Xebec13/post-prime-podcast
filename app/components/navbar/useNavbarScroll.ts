@@ -8,18 +8,28 @@ export function useNavbarScroll() {
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (current) => {
+        // Zabezpieczenie dla SSR
+        if (typeof window === "undefined") return;
+
         const previous = scrollY.getPrevious() ?? 0;
         const diff = current - previous;
 
-        // Smart Navbar Logic
-        if (current < 10) {
+        // 1. Zawsze pokazuj na samej górze
+        if (current < 50) {
             setIsVisible(true);
-        } else if (diff > 15) { // Ukryj po przewinięciu 15px w dół
+            return;
+        }
+
+        // 2. Histereza - dodajemy margines błędu, żeby navbar nie "wariował"
+        // Ukryj tylko jeśli przewinięto w dół o więcej niż 10px
+        if (diff > 10) {
             setIsVisible(false);
-        } else if (diff < -20) { // Pokaż po przewinięciu 20px w górę (lekki bufor)
+        } 
+        // Pokaż tylko jeśli przewinięto w górę o więcej niż 15px
+        else if (diff < -15) {
             setIsVisible(true);
         }
     });
 
-    return { isVisible, setIsVisible };
+    return { isVisible };
 }
