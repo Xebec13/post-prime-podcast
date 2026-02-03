@@ -53,7 +53,7 @@ const GameCard = ({ game, isResult }: { game: NBAGameData; isResult?: boolean })
             {/* GOSPODARZE */}
             <div className="flex flex-col items-center flex-1">
                 <div className="relative size-7 md:size-8 lg:size-10 bg-orange-50/10 rounded-full mb-1 overflow-hidden">
-                    <Image src={game.homeTeam.logo} alt={game.homeTeam.code} sizes="32px" fill className="object-cover" />
+                    <Image src={game.homeTeam.logo} alt={game.homeTeam.code} sizes="32px" fill className="object-cover p-0.5" />
                 </div>
                 <span className={`text-[9px] md:text-[11px] font-black ${game.homeTeam.score > game.awayTeam.score && isResult ? 'text-white' : 'text-neutral-400'}`}>
                     {game.homeTeam.code}
@@ -66,7 +66,7 @@ const GameCard = ({ game, isResult }: { game: NBAGameData; isResult?: boolean })
 // Separator
 const Separator = ({ label, subLabel }: { label: string; subLabel: string }) => (
     <div className="flex flex-col justify-center items-center min-w-16 md:min-w-20 border-l border-r border-dashed border-neutral-700 bg-neutral-600 px-2 shrink-0">
-        <span className="text-[8px] md:text-[9px] font-bl7ck upperc8 lg:size-10se text-orange-30 leading-none mb-1">{label}</span>
+        <span className="text-[8px] md:text-[9px] font-black text-orange-30 leading-none mb-1">{label}</span>
         <span className="text-[9px] md:text-[11px] font-bold text-orange-500">{subLabel}</span>
     </div>
 );
