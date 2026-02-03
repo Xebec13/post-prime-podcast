@@ -28,7 +28,7 @@ export default function HeroLayout({
     return (
         <section
             id="home"
-            className="grid h-[190vh] grid-cols-6 grid-rows-11 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5 bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:max-h-[300vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
+            className="grid h-[190vh] grid-cols-6 grid-rows-9 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5 bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:max-h-[300vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
         >
             {/* 1. SCORE */}
             <div className="md:max-h-full col-start-1 col-span-full row-start-1 row-span-1 md:col-start-1 md:col-span-full md:row-start-1 md:row-span-1 lg:col-start-1 lg:col-span-full lg:row-start-1 lg:row-span-1">
@@ -69,11 +69,11 @@ export default function HeroLayout({
             <div
                 className="col-start-1 col-span-full row-start-8 row-span-5 grid grid-rows-6 gap-0.5 md:col-start-1 md:col-span-full md:row-start-8 md:row-span-3 md:grid-cols-6 md:grid-rows-1 lg:col-start-1 lg:col-span-full lg:row-start-9 lg:row-span-5"
             >
-                <div className="row-start-1 row-span-1 border-t-2 border-b-2 border-neutral-600 md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-full lg:col-span-2">
+                <div className="row-start-1 row-span-2 border-t-2 border-b-2 border-neutral-600 md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-full lg:col-span-2">
                     {videoInfoSlot}
                 </div>
 
-                <div className="row-start-2 row-span-full md:col-start-3 md:col-span-4 md:row-start-1 md:row-span-full lg:col-start-3 lg:col-span-4">
+                <div className="row-start-3 row-span-full md:col-start-3 md:col-span-4 md:row-start-1 md:row-span-full lg:col-start-3 lg:col-span-4">
                     {videoContentSlot}
                 </div>
             </div>
