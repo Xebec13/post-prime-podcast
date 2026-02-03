@@ -47,7 +47,7 @@ export default function Footer() {
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
             >
-                <Icon name="Basketball" className="size-20 md:size-100 lg:size-120" />
+                <Icon name="Basketball" className="size-80 md:size-100 lg:size-120" />
             </motion.div>
 
             {/* 2. GŁÓWNY LAYOUT */}

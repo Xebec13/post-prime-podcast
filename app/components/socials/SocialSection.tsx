@@ -19,8 +19,9 @@ export default function SocialSection({ id, title, brandColor, posts, channelUrl
                 <SocialPostList posts={posts} brandColor={brandColor} />
             </div>
 
-            <div className="text-sm md:text-base flex px-5 justify-end relative right-10 z-10 text-gray-50 transition-colors hover:text-white">
+            <div className="text-xs md:text-sm flex px-5 justify-end relative right-10 z-10 text-gray-50 transition-colors hover:text-white">
                 <SmartLinkLg
+                    iconSize={14}
                     text={`odwiedź ${id}`}
                     href={channelUrl}
                     isExternal={true}

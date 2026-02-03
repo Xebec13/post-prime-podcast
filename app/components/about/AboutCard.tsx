@@ -47,7 +47,7 @@ const textRevealVariants: Variants = {
 
 export default function AboutCard({ host }: { host: Host }) {
     return (
-        <motion.div variants={cardVariants} className="relative h-full w-1/2 sm:w-3/4 min-w-50 max-w-lg lg:max-w-full flex flex-col gap-4">
+        <motion.div variants={cardVariants} className="relative h-full w-3/4 min-w-50 max-w-lg lg:max-w-full flex flex-col gap-4">
             
             {/* GRAFIKA */}
             <motion.div

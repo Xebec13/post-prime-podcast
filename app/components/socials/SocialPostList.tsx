@@ -38,22 +38,22 @@ export default function SocialPostList({ posts, brandColor }: { posts: PostItem[
                         <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">{post.date}</span>
                         
                         {/* Kontener tekstu z fixed height dla zachowania równego gridu */}
-                        <div className="text-sm text-gray-300 leading-relaxed h-24 overflow-y-auto no-scrollbar group-hover:text-gray-100">
+                        <div className="text-xs md:text-sm text-gray-300 leading-relaxed h-24 overflow-y-auto no-scrollbar group-hover:text-gray-100">
                             {post.content}
                         </div>
 
                         <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/5">
                             <div className="flex items-center gap-3 text-xs font-bold text-neutral-400">
                                 <div className={`flex items-center gap-1.5 transition-colors group-hover:${hoverTextColor}`}>
-                                    <Icon name="Like" size={14} />
+                                    <Icon name="Like" className="size-2 md:size-5" />
                                     <span>{post.likes}</span>
                                 </div>
                                 <div className={`flex items-center gap-1.5 transition-colors group-hover:${hoverTextColor}`}>
-                                    <Icon name="Comment" size={14} />
+                                    <Icon name="Comment" className="size-2 md:size-5" />
                                     <span>{post.comments}</span>
                                 </div>
                             </div>
-                            <IconLink href={post.url} size={16} className={`text-gray-50 hover:${hoverTextColor}`} />
+                            <IconLink href={post.url} size={14} className={`text-gray-50 hover:${hoverTextColor}`} />
                         </div>
                     </div>
                 </motion.div>
