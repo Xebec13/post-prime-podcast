@@ -36,8 +36,8 @@ export default function Footer() {
             
             {/* 1. DEKORACJE (Lampy i Piłka) */}
             <div className="absolute top-0 inset-x-0 w-full flex justify-between px-[10%] md:px-[15%] pointer-events-none z-0">
-                <Lamp length="long" className="relative -top-5" />
-                <Lamp length="short" className="-mt-0.5" />
+                <Lamp length="short" className="realtive top-0" />
+                <Lamp length="long" className="relative top-0" />
             </div>
 
             <motion.div 
@@ -71,12 +71,12 @@ export default function Footer() {
 
                     {/* LOGO */}
                     <div className="w-full flex justify-center">
-                        <div className="bg-gray-50 rounded-full w-full max-w-25 sm:max-w-35 aspect-square relative overflow-hidden">
+                        <div className="bg-gray-50 rounded-full size-1/4 md:size-1/3 aspect-square relative overflow-hidden">
                             <Image
                                 src="/postprime-logo-2.png"
                                 alt="PostPrime logo"
                                 fill
-                                className="object-contain p-2"
+                                className="object-contain"
                             />
                         </div>
                     </div>
