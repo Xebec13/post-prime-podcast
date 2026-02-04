@@ -73,7 +73,7 @@ export default function Footer() {
                     <div className="w-full flex justify-center">
                         <div className="bg-gray-50 rounded-full size-1/4 md:size-1/3 aspect-square relative overflow-hidden">
                             <Image
-                                src="/postprime-logo-2.png"
+                                src="/pp.png"
                                 alt="PostPrime logo"
                                 fill
                                 className="object-contain"
