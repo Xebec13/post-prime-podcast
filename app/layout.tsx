@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image", // Duża karta na Twitterze
     title: "Post Prime",
     description: "Podcast o NBA. Sprawdź najnowsze odcinki.",
-    images: ["/pp.png"], // Twitter też weźmie Twoje logo
+    images: ["/pp.ico"], // Twitter też weźmie Twoje logo
   },
 };
 
