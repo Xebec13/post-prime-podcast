@@ -39,11 +39,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Post Prime Team" }],
   creator: "Post Prime",
 
-  // IKONY (Favicon i Apple)
-  icons: {
-    icon: "/pp.ico",         // Zwykły favicon (karta przeglądarki)
-    shortcut: "/pp.ico", 
-    apple: "/pp.ico",        // Ikona na iPhone/iPad (Home Screen)
+ icons: {
+    // Dodajemy "?v=2" - to mówi przeglądarce: "To jest nowa wersja, pobierz ją!"
+    icon: "/favicon.ico?v=2",
+    shortcut: "/favicon.ico?v=2",
+    apple: "/favicon.ico?v=2", // Jeśli nie masz PNG, to chociaż niech spróbuje ICO
   },
 
   // SOCIAL MEDIA (Facebook, Discord, LinkedIn, iMessage)
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image", // Duża karta na Twitterze
     title: "Post Prime",
     description: "Podcast o NBA. Sprawdź najnowsze odcinki.",
-    images: ["/pp.ico"], // Twitter też weźmie Twoje logo
+    images: ["/favicon.ico"], // Twitter też weźmie Twoje logo
   },
 };
 
@@ -79,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Zmieniamy lang="en" na "pl" - ważne dla Google i czytników ekranowych!
+    
     <html lang="pl" className="scroll-smooth"> 
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-neutral-950 text-gray-50`}
