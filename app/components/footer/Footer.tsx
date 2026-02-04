@@ -71,10 +71,11 @@ export default function Footer() {
 
                     {/* LOGO */}
                     <div className="w-full flex justify-center">
-                        <div className="bg-gray-50 rounded-full size-1/4 md:size-1/3 aspect-square relative overflow-hidden">
+                        <div className="rounded-full size-1/2 md:size-1/2 aspect-square relative overflow-hidden">
                             <Image
                                 src="/pp.png"
                                 alt="PostPrime logo"
+                                sizes="(min-width: 768px) 33vw, 25vw"
                                 fill
                                 className="object-contain"
                             />
