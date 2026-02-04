@@ -8,11 +8,47 @@ body {
 }
 
 @layer utilities {
- 
   h1,
   .font-playfair,
   .about-link {
     font-family: var(--font-playfair);
   }
+  /* 1. Reset i ujednolicenie dla wszystkich kontenerów z klasą .scrollbar-custom */
+.scrollbar-custom {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 transparent;
   
+  /* Płynne przewijanie na iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 2. Chrome, Edge, Safari, Opera, iOS Safari, Android Chrome */
+.scrollbar-custom::-webkit-scrollbar {
+  height: 4px; /* Bardzo smukły */
+  width: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent; /* Tło paska jest niewidoczne, żeby nie psuło designu */
+  margin: 0 10px; /* Odstęp od krawędzi */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #f97316; /* orange-500 */
+  border-radius: 20px;
+  /* Trick: dodajemy przezroczysty border, który działa jak padding dla suwaka */
+  border: 1px solid transparent; 
+  background-clip: content-box;
+}
+
+/* Ukrywamy scrollbar, gdy nie jest używany (opcjonalnie, dla czystości) */
+@media (hover: hover) {
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: rgba(249, 115, 22, 0.4);
+  }
+  .scrollbar-custom:hover::-webkit-scrollbar-thumb {
+    background-color: #f97316;
+  }
+}
 }

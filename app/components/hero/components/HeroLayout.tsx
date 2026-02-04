@@ -28,7 +28,10 @@ export default function HeroLayout({
     return (
         <section
             id="home"
-            className="grid h-[190vh] grid-cols-6 grid-rows-9 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5 bg-inherit pt-11 px-3 md:px-5 md:h-[200vh] md:max-h-[300vh] md:min-h-[200vh] md:grid-cols-6 md:grid-rows-10 lg:grid-cols-6 lg:grid-rows-13"
+            className="grid grid-cols-6 gap-y-1 gap-x-1 md:gap-y-2 lg:gap-y-2.5 bg-inherit pt-11 px-3 md:px-5 
+           min-h-screen h-auto
+           auto-rows-[minmax(120px,auto)] 
+           md:auto-rows-[minmax(150px,auto)]"
         >
             {/* 1. SCORE */}
             <div className="md:max-h-full col-start-1 col-span-full row-start-1 row-span-1 md:col-start-1 md:col-span-full md:row-start-1 md:row-span-1 lg:col-start-1 lg:col-span-full lg:row-start-1 lg:row-span-1">

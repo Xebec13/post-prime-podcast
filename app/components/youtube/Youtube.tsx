@@ -42,7 +42,7 @@ export default async function YouTube() {
             {/* Manager dostaje teraz prawdziwe filmy */}
             <YoutubeManager initialVideos={formattedVideos} />
 
-            <div className="flex px-5 justify-end relative right-5 z-10 text-gray-50 transition-colors hover:text-white">
+            <div className="text-xs md:text-sm flex px-5 justify-end relative right-5 md:right-10 z-10 text-gray-50 transition-colors hover:text-white">
                 <SmartLinkLg
                     text="odwiedź kanał"
                     href="https://www.youtube.com/@PostPrimePL"

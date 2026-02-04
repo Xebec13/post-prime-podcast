@@ -36,18 +36,18 @@ export default function HeroInfoBar({
             className="relative w-full overflow-hidden flex flex-col items-center justify-center"
         >
             {/* 1. LINIE GÓRNE */}
-            <div className="flex flex-col items-center gap-2.5 w-full">
-                <Separator width="long" color="bg-neutral-400" />
+            <div className="flex flex-col items-center gap-2.5 w-full ">
+                <Separator width="long" color="bg-neutral-400 md:block hidden" />
                 <Separator width="mid" color="bg-neutral-500" />
             </div>
 
             {/* 2. TREŚĆ */}
             <motion.div
                 variants={textVariants}
-                className="relative flex items-center flex-col md:flex-row justify-center gap-4 w-full px-4 my-5 lg:my-10"
+                className="relative flex items-center flex-col md:flex-row justify-center gap-2 md:gap-4 w-full px-4 my-5 md:my-10"
             >
                 {/* DATA */}
-                <div className="bg-orange-500/80 text-neutral-950 font-black text-[clamp(1rem,1.2rem+0.9vw,3rem)] px-10 py-1 capitalize tracking-tighter shadow-xl shrink-0">
+                <div className="bg-orange-500/80 text-neutral-950 font-black text-[clamp(0.8rem,1.2rem+0.9vw,3.5rem)] px-10 py-1 capitalize tracking-tighter shadow-xl whitespace-nowrap shrink-0">
                     {formattedDate}
                 </div>
 
@@ -56,7 +56,7 @@ export default function HeroInfoBar({
                     text={infoLabel}
                     highlight={highlight}
                     highlightColor="text-orange-500/90"
-                    className="text-gray-50 font-black uppercase tracking-tight text-[clamp(0.8rem,1rem+0.9vw,3rem)] whitespace-nowrap"
+                    className="text-gray-50 font-black uppercase tracking-tight text-[clamp(0.6rem,1rem+0.9vw,3.25rem)]"
                     delay={0.2}
                 />
             </motion.div>
@@ -64,7 +64,7 @@ export default function HeroInfoBar({
             {/* 3. LINIE DOLNE */}
             <div className="flex flex-col items-center gap-2.5 w-full">
                 <Separator width="min" color="bg-neutral-500" />
-                <Separator width="long" color="bg-neutral-400" />
+                <Separator width="long" color="bg-neutral-400 md:block hidden" />
             </div>
         </ScrollReveal>
     );

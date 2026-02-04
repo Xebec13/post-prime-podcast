@@ -85,11 +85,8 @@ export default function HeroScore({ yesterdayGames, todayGames, tomorrowGames, l
             </div>
 
             <div className="flex flex-col items-start h-full overflow-hidden">
-                {/* ZMIANA TUTAJ: 
-                   1. Zamiast 'no-scrollbar' dajemy 'scrollbar-thin' (wymaga CSS w globals.css).
-                   2. Dzięki temu na desktopie pojawi się cienki pasek na dole, który można przesunąć myszką.
-                */}
-                <div className="flex gap-1 p-1 overflow-x-auto scrollbar-thin h-full items-stretch w-full">
+                
+                <div className="flex gap-1 p-1 overflow-x-auto scrollbar-custom h-full items-stretch w-full">
                     
                     {/* 1. WCZORAJ (Wyniki) */}
                     {yesterdayGames.length > 0 && (

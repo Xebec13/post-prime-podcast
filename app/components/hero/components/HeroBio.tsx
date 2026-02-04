@@ -97,7 +97,7 @@ export default function HeroBio({ intro, highlight, outro }: HeroBioProps) {
                 initial="hidden"
                 animate="visible"
             >
-                <p className="font-semibold text-justify leading-relaxed md:leading-6 tracking-wide text-[clamp(0.5rem,0.5rem+0.4vw,2rem)]">
+                <p className="font-semibold text-justify leading-relaxed md:leading-6 tracking-wide text-[clamp(0.6rem,0.7rem+0.5vw,2rem)]">
                     
                     {/* DROP CAP */}
                     <span className="float-left text-xl md:text-3xl lg:text-[2.5rem] font-black leading-1.5 md:leading-2 lg:leading-3 font-playfair text-orange-500/90 font-sans">

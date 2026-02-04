@@ -54,7 +54,7 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
 
             {/* === GÓRA: PASEK IKON === */}
             <motion.div
-                className="relative z-20 grid grid-cols-3 place-items-center will-change-transform h-1/4 shrink-0 bg-neutral-900"
+                className="relative z-20 grid grid-cols-3 place-items-center will-change-transform min-h-1/4 shrink-0 bg-neutral-900"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -96,20 +96,20 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex flex-col justify-center gap-2 size-full py-2 px-3 md:px-4"
+                        className="absolute inset-0 flex flex-col justify-center gap-1 size-full px-3 md:px-4"
                     >
                         {/* Tytuł */}
-                        <div className="flex justify-between items-center ">
+                        <div className="flex justify-between items-center">
                             <h3 className={`text-xs font-bold tracking-tight md:text-sm lg:text-lg ${currentItem.textColor}`}>
                                 {currentItem.title}
                             </h3>
-                            <div className="text-xs md:text-sm ">
-                                <SmartLinkLg text="Link" iconSize={14} href={currentItem.href} isExternal={false} />
+                            <div className="text-xs md:text-xs ">
+                                <SmartLinkLg text="Link" iconSize={12} href={currentItem.href} isExternal={false} />
                             </div>
                         </div>
 
                         {/* Statystyki */}
-                        <div className="flex flex-col justify-center space-y-1 font-medium text-gray-50 tabular-nums">
+                        <div className="flex flex-col justify-center gap-0.5 font-medium text-gray-50 tabular-nums">
                             <div className="flex justify-between items-center border-b-2 border-orange-500/10 pb-1">
                                 <span className="text-[8px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Subscribers</span>
                                 <span className="text-[8px] md:text-xs lg:text-sm font-black">{currentItem.stats.subscribers}</span>
@@ -118,7 +118,7 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
                                 <span className="text-[8px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Total Views</span>
                                 <span className="text-[8px] md:text-xs lg:text-sm font-black">{currentItem.stats.views}</span>
                             </div>
-                            <div className="mt-4 flex justify-between items-end border-b-2 text-gray-300 pb-1">
+                            <div className="mt-1.5 flex justify-between items-end border-b-2 text-gray-200 pb-1">
                                 <span className="text-[9px] md:text-xs lg:text-sm uppercase tracking-widest ">Target Goal</span>
                                 <span className="text-[9px] md:text-xs lg:text-sm font-black ">{currentItem.stats.goals}</span>
                             </div>
