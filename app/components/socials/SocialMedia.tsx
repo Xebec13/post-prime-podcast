@@ -32,7 +32,7 @@ export default function SocialMedia() {
                 title="Facebook" 
                 brandColor="bg-blue-500/70" 
                 posts={fbPosts} 
-                channelUrl="https://facebook.com/postprime" 
+                channelUrl="https://www.facebook.com/postprimepl/" 
             />
 
             <SocialSection 
@@ -40,7 +40,7 @@ export default function SocialMedia() {
                 title="Instagram" 
                 brandColor="bg-fuchsia-600/70" 
                 posts={igPosts} 
-                channelUrl="https://instagram.com/postprime" 
+                channelUrl="https://www.instagram.com/postprime_pl/" 
             />
         </div>
     );

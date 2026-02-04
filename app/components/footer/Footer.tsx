@@ -9,10 +9,10 @@ import { IconName } from "../ui/icons";
 
 // === DANE (W jednym miejscu na górze pliku) ===
 const SOCIAL_LINKS: { href: string; label: string; icon: IconName }[] = [
-    { href: "https://youtube.com", label: "YouTube", icon: "Youtube" },
-    { href: "https://instagram.com", label: "Instagram", icon: "Instagram" },
-    { href: "https://facebook.com", label: "Facebook", icon: "Facebook" },
-    { href: "https://twitter.com", label: "Twitter", icon: "Twitter" },
+    { href: "https://www.youtube.com/@PostPrimePL", label: "YouTube", icon: "Youtube" },
+    { href: "https://www.instagram.com/postprime_pl/", label: "Instagram", icon: "Instagram" },
+    { href: "https://www.facebook.com/postprimepl/", label: "Facebook", icon: "Facebook" },
+    // { href: "https://twitter.com", label: "Twitter", icon: "Twitter" },
 ];
 
 const FOOTER_LINKS = [
@@ -41,7 +41,7 @@ export default function Footer() {
             </div>
 
             <motion.div 
-                className="absolute -left-10 bottom-0 md:-left-25 md:-bottom-25 text-orange-500/30 pointer-events-none z-0"
+                className="absolute -left-10 bottom-0 md:-left-25 md:-bottom-25 text-orange-500/20 pointer-events-none z-0"
                 initial={{ x: -100, rotate: -90, opacity: 0 }}
                 whileInView={{ x: 0, rotate: -15, opacity: 1 }}
                 viewport={{ once: true, amount: 0.1 }}
@@ -93,7 +93,7 @@ export default function Footer() {
                                 className="p-2 outline-none bg-orange-500/20 border border-orange-500/30 text-white text-sm focus:bg-orange-500/40 transition-colors"
                                 required
                             />
-                            <button className="bg-orange-500 max-w-3/4 mx-auto text-gray-50 px-8 py-2.5 font-bold rounded-md uppercase hover:bg-orange-400 transition-all active:scale-95 shadow-lg ">
+                            <button className="bg-orange-500 max-w-3/4 mx-auto mt-2 text-gray-50 px-8 py-2.5 font-bold rounded-md uppercase hover:bg-orange-400 transition-all active:scale-95 shadow-lg ">
                                 Zapisz
                             </button>
                         </form>

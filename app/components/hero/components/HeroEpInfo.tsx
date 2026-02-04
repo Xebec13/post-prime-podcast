@@ -69,7 +69,7 @@ export default function HeroEpInfo({ title, statistics }: HeroEpInfoProps) {
             </div>
 
             {/* === STATYSTYKI === */}
-            <div className="relative z-10 self-end inline-flex p-3 gap-3 text-sm font-medium text-gray-50">
+            <div className="relative z-10 self-end inline-flex p-3 gap-3 text-xs md:text-sm font-medium text-gray-50">
                 <div className="inline-flex justify-center items-center gap-1.5 p-1 bg-neutral-900/40 rounded-md backdrop-blur-sm shadow-sm">
                     <span><Icon name="Like" className="text-[10px] text-orange-500" /></span>
                     <p>{Number(statistics.viewCount || 0).toLocaleString('pl-PL')}</p>

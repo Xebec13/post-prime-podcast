@@ -44,14 +44,14 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
             {/* === ELEMENTY PARALAKSY (PIŁKI) === */}
             <motion.div
                 style={{ y: ballYRight, rotate: ballRotate, opacity: ballOpacity }}
-                className="absolute top-0 right-10 md:right-25 z-0 text-orange-500/40 pointer-events-none"
+                className="absolute top-0 right-10 md:right-25 z-0 text-orange-500/30 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
             
             <motion.div
                 style={{ y: ballYLeft, rotate: ballRotate, opacity: ballOpacity }}
-                className="absolute top-0 left-5 md:left-15 z-0 text-orange-500/50 pointer-events-none"
+                className="absolute top-0 left-5 md:left-15 z-0 text-orange-500/30 pointer-events-none"
             >
                 <Icon name="Basketball" className="size-18 md:size-46 lg:size-96" />
             </motion.div>
@@ -97,7 +97,7 @@ export default function YoutubeList({ videos, onVideoSelect, activeId }: Youtube
 
                             {/* TREŚĆ */}
                             <div className="relative grid grid-rows-3 gap-1.5 px-1 md:px-2">
-                                <h4 className={`row-span-2 min-h-5
+                                <h4 className={`row-span-2 min-h-5 shrink-0
                                     text-xs md:text-sm lg:text-base font-bold leading-tight tracking-tight line-clamp-2 transition-colors 
                                     ${isActive ? "text-white" : "text-gray-50 group-hover:text-white"}
                                 `}>

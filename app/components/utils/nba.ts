@@ -1,9 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { NBAGameData } from "../hero/components/HeroScore";
 
-// === TYPY WEWNĘTRZNE API ===
-
-// Dla todaysScoreboard_00.json
+// === TYPY (Bez zmian) ===
 interface CDN_Today_Response {
   scoreboard: {
     gameDate: string; 
@@ -16,7 +14,6 @@ interface CDN_Today_Response {
   };
 }
 
-// Dla scheduleLeagueV2.json
 interface CDN_Schedule_Game {
   gameId: string;
   gameStatusText: string;
@@ -33,13 +30,13 @@ interface CDN_Schedule_Response {
   };
 }
 
-// === TYP ZWRACANY ===
 export interface NBADataPackage {
   yesterday: NBAGameData[];
   today: NBAGameData[];
   tomorrow: NBAGameData[];
   labels: {
     yesterday: string;
+    today: string;      // Dodano label dla Dziś (żeby data się aktualizowała)
     tomorrow: string;
   }
 }
@@ -49,32 +46,38 @@ const getLogo = (id: number) => `https://cdn.nba.com/logos/nba/${id}/global/L/lo
 // === GŁÓWNA FUNKCJA ===
 export async function getNBALiveScores(): Promise<NBADataPackage> {
   try {
-    // 1. POBIERZ "DZIŚ" (KOTWICA)
+    // 1. POBIERZ DANE LIVE (KOTWICA)
     const todayRes = await fetch("https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json", { 
         next: { revalidate: 60 } 
     });
     
-    if (!todayRes.ok) throw new Error("Błąd pobierania live score");
+    if (!todayRes.ok) throw new Error("Błąd live score");
     const todayData: CDN_Today_Response = await todayRes.json();
 
-    // 2. PRZETWÓRZ DZIŚ
-    const todayGames: NBAGameData[] = todayData.scoreboard.games.map(game => ({
+    // Przetwórz dane z pliku "today"
+    const liveEndpointGames: NBAGameData[] = todayData.scoreboard.games.map(game => ({
       id: game.gameId,
       status: cleanStatus(game.gameStatusText),
       awayTeam: { code: game.awayTeam.teamTricode, logo: getLogo(game.awayTeam.teamId), score: game.awayTeam.score },
       homeTeam: { code: game.homeTeam.teamTricode, logo: getLogo(game.homeTeam.teamId), score: game.homeTeam.score }
     }));
 
-    // 3. OBLICZ DATY (WCZORAJ I JUTRO)
-    const anchorDate = new Date(todayData.scoreboard.gameDate);
+    // === LOGIKA PRZESUWANIA DNIA (ROLLOVER) ===
+    // Sprawdzamy, czy wszystkie mecze z tego pliku są już zakończone.
+    const allFinished = liveEndpointGames.length > 0 && liveEndpointGames.every(g => g.status === 'FINAL');
     
-    const prevDate = new Date(anchorDate);
-    prevDate.setDate(anchorDate.getDate() - 1);
+    // Pobieramy datę z API (np. "2026-02-04")
+    const anchorDate = new Date(todayData.scoreboard.gameDate);
 
-    const nextDate = new Date(anchorDate);
-    nextDate.setDate(anchorDate.getDate() + 1);
+    let yesterdayGames: NBAGameData[] = [];
+    let todayGames: NBAGameData[] = [];
+    let tomorrowGames: NBAGameData[] = [];
+    
+    let dateForYesterday: Date;
+    let dateForToday: Date;
+    let dateForTomorrow: Date;
 
-    // Formatowanie dat do szukania w JSON
+    // Helper do formatowania daty dla szukarki JSON
     const formatNBA = (d: Date) => {
         const mm = String(d.getMonth() + 1).padStart(2, '0');
         const dd = String(d.getDate()).padStart(2, '0');
@@ -82,63 +85,102 @@ export async function getNBALiveScores(): Promise<NBADataPackage> {
         return `${mm}/${dd}/${yyyy} 00:00:00`;
     };
 
-    const yesterdayKey = formatNBA(prevDate);
-    const tomorrowKey = formatNBA(nextDate);
+    if (allFinished) {
+        // SCENARIUSZ 1: WSZYSTKO SKOŃCZONE -> PRZESUWAMY DNI
+        // Dane z "live endpoint" stają się WCZORAJSZE
+        yesterdayGames = liveEndpointGames;
+        
+        // Daty przesuwamy w przód
+        dateForYesterday = new Date(anchorDate); // To co API nazywa "dziś", dla nas jest "wczoraj"
+        
+        dateForToday = new Date(anchorDate);
+        dateForToday.setDate(anchorDate.getDate() + 1); // Prawdziwe "dziś" (nadchodząca noc)
 
-    // 4. POBIERZ DANE Z CACHE'OWANEGO HELPERA
-    const filteredSchedule = await getFilteredScheduleData(yesterdayKey, tomorrowKey);
+        dateForTomorrow = new Date(anchorDate);
+        dateForTomorrow.setDate(anchorDate.getDate() + 2); // Prawdziwe "jutro"
 
+        // Musimy pobrać terminarz dla NOWEGO Dziś i NOWEGO Jutro
+        const scheduleData = await getFilteredScheduleData(formatNBA(dateForToday), formatNBA(dateForTomorrow));
+        
+        // Przypisujemy wyniki z terminarza (scheduleData zwraca mapę { [date]: games })
+        todayGames = scheduleData[formatNBA(dateForToday)] || [];
+        tomorrowGames = scheduleData[formatNBA(dateForTomorrow)] || [];
+
+    } else {
+        // SCENARIUSZ 2: MECZE TRWAJĄ LUB SIĘ NIE ZACZĘŁY (STANDARD)
+        todayGames = liveEndpointGames;
+
+        dateForToday = new Date(anchorDate);
+        
+        dateForYesterday = new Date(anchorDate);
+        dateForYesterday.setDate(anchorDate.getDate() - 1);
+
+        dateForTomorrow = new Date(anchorDate);
+        dateForTomorrow.setDate(anchorDate.getDate() + 1);
+
+        // Pobieramy terminarz dla Wczoraj i Jutro
+        const scheduleData = await getFilteredScheduleData(formatNBA(dateForYesterday), formatNBA(dateForTomorrow));
+        
+        yesterdayGames = scheduleData[formatNBA(dateForYesterday)] || [];
+        tomorrowGames = scheduleData[formatNBA(dateForTomorrow)] || [];
+    }
+
+    // Formatowanie etykiet (DD.MM)
     const formatLabel = (d: Date) => `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}`;
 
     return {
-      yesterday: filteredSchedule.yesterday,
+      yesterday: yesterdayGames,
       today: todayGames,
-      tomorrow: filteredSchedule.tomorrow,
+      tomorrow: tomorrowGames,
       labels: {
-        yesterday: formatLabel(prevDate),
-        tomorrow: formatLabel(nextDate)
+        yesterday: formatLabel(dateForYesterday),
+        today: formatLabel(dateForToday),
+        tomorrow: formatLabel(dateForTomorrow)
       }
     };
 
   } catch (error) {
     console.error("Błąd NBA:", error);
-    return { yesterday: [], today: [], tomorrow: [], labels: { yesterday: "", tomorrow: "" } };
+    return { 
+        yesterday: [], today: [], tomorrow: [], 
+        labels: { yesterday: "", today: "", tomorrow: "" } 
+    };
   }
 }
 
 // === POMOCNIK CACHE ===
-// Używamy unstable_cache, aby zapisać w pamięci tylko mały wycinek danych,
-// a nie cały plik 10MB (który fetchujemy z flagą no-store).
+// Zmodyfikowany, by zwracał obiekt z kluczami dat, a nie sztywne yesterday/tomorrow
 const getFilteredScheduleData = unstable_cache(
-    async (yesterdayKey: string, tomorrowKey: string) => {
+    async (dateKey1: string, dateKey2: string) => {
         try {
-            // Fetch z no-store omija błąd limitu 2MB w Next.js Data Cache
             const res = await fetch("https://cdn.nba.com/static/json/staticData/scheduleLeagueV2.json", { 
                 cache: 'no-store' 
             });
-            if (!res.ok) return { yesterday: [], tomorrow: [] };
+            if (!res.ok) return {};
             
             const data: CDN_Schedule_Response = await res.json();
-            
-            // Znajdź wczoraj
-            const yEntry = data.leagueSchedule.gameDates.find(d => d.gameDate === yesterdayKey);
-            const yesterdayGames = yEntry ? yEntry.games.map(mapScheduleGame) : [];
+            const result: Record<string, NBAGameData[]> = {};
 
-            // Znajdź jutro
-            const tEntry = data.leagueSchedule.gameDates.find(d => d.gameDate === tomorrowKey);
-            const tomorrowGames = tEntry ? tEntry.games.map(mapScheduleGame) : [];
+            // Szukamy obu dat
+            [dateKey1, dateKey2].forEach(key => {
+                const entry = data.leagueSchedule.gameDates.find(d => d.gameDate === key);
+                if (entry) {
+                    result[key] = entry.games.map(mapScheduleGame);
+                } else {
+                    result[key] = [];
+                }
+            });
 
-            return { yesterday: yesterdayGames, tomorrow: tomorrowGames };
+            return result;
 
         } catch (error) {
-            console.error("Błąd schedule:", error); // Używamy 'error', żeby linter nie krzyczał
-            return { yesterday: [], tomorrow: [] };
+            console.error("Błąd schedule:", error);
+            return {};
         }
     },
-    ['nba-schedule-filtered-v2'], // Unikalny klucz cache
-    { revalidate: 3600 } // Odświeżaj co godzinę
+    ['nba-schedule-dynamic-v3'], // Zmień wersję klucza cache dla pewności
+    { revalidate: 3600 }
 );
-
 
 // Funkcje mapujące
 function mapScheduleGame(game: CDN_Schedule_Game): NBAGameData {

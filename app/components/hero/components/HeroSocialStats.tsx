@@ -111,16 +111,16 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
                         {/* Statystyki */}
                         <div className="flex flex-col justify-center space-y-1 font-medium text-gray-50 tabular-nums">
                             <div className="flex justify-between items-center border-b-2 border-orange-500/10 pb-1">
-                                <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Subscribers</span>
-                                <span className="text-[10px] md:text-xs lg:text-sm font-black">{currentItem.stats.subscribers}</span>
+                                <span className="text-[8px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Subscribers</span>
+                                <span className="text-[8px] md:text-xs lg:text-sm font-black">{currentItem.stats.subscribers}</span>
                             </div>
                             <div className="flex justify-between items-center border-b-2 border-orange-500/10 pb-1">
-                                <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Total Views</span>
-                                <span className="text-[10px] md:text-xs lg:text-sm font-black">{currentItem.stats.views}</span>
+                                <span className="text-[8px] md:text-xs lg:text-sm uppercase tracking-wider text-gray-400 ">Total Views</span>
+                                <span className="text-[8px] md:text-xs lg:text-sm font-black">{currentItem.stats.views}</span>
                             </div>
                             <div className="mt-4 flex justify-between items-end border-b-2 text-gray-300 pb-1">
-                                <span className="text-[11px] md:text-xs lg:text-sm uppercase tracking-widest ">Target Goal</span>
-                                <span className="text-[11px] md:text-xs lg:text-sm font-black ">{currentItem.stats.goals}</span>
+                                <span className="text-[9px] md:text-xs lg:text-sm uppercase tracking-widest ">Target Goal</span>
+                                <span className="text-[9px] md:text-xs lg:text-sm font-black ">{currentItem.stats.goals}</span>
                             </div>
                         </div>
 

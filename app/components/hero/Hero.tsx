@@ -57,7 +57,7 @@ export default async function Hero() {
         {
             key: "youtube",
             title: "PostPrimePL",
-            href: "https://youtube.com",
+            href: "https://www.youtube.com/@PostPrimePL",
             icon: "Youtube",
             textColor: "text-red-600",
             stats: { subscribers: "125K", views: "12M", goals: "200K" }
@@ -65,18 +65,18 @@ export default async function Hero() {
         {
             key: "facebook",
             title: "@postprimepl",
-            href: "https://facebook.com",
+            href: "https://www.facebook.com/postprimepl/",
             icon: "Facebook",
             textColor: "text-blue-600",
             stats: { subscribers: "45K", views: "150K", goals: "50K" }
         },
         {
             key: "instagram",
-            title: "@postprime_pl",
-            href: "https://instagram.com",
+            title: "postprime_pl",
+            href: "https://www.instagram.com/postprime_pl/",
             icon: "Instagram",
             textColor: "text-fuchsia-500",
-            stats: { subscribers: "80K", views: "2M", goals: "100K" }
+            stats: { subscribers: "87", views: "2M", goals: "100K" }
         },
     ];
 

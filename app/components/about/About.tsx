@@ -9,7 +9,7 @@ const HOSTS: Host[] = [
         role: "Dziennikarz / Prowadzący",
         hostImg: "/post-prime-ms.png",
         hostBg: "/pp-ms-bg-1.jpg",
-        socials: { twitter: "https://twitter.com", instagram: "https://instagram.com" }
+        socials: { facebook:"https://www.facebook.com/maciek.staszewski/", instagram: "https://www.instagram.com/13wooden/",twitter: "https://x.com/wooden13" }
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ const HOSTS: Host[] = [
         role: "Ex-NBA Player",
         hostImg: "/post-prime-mg.png",
         hostBg: "/post-prime-mg-bg.jpg",
-        socials: { twitter: "https://twitter.com", instagram: "https://instagram.com", facebook: "https://facebook.com" }
+        socials: { facebook:"https://www.facebook.com/marcingortat.MG13/", instagram: "https://www.instagram.com/mgortat13/",twitter: "https://x.com/MGortat" }
     },
     {
         id: 3,
@@ -25,7 +25,7 @@ const HOSTS: Host[] = [
         role: "Dziennikarz / Analityk",
         hostImg: "/post-prime-pz.png",
         hostBg: "/post-prime-pz-bg.jpg.webp",
-        socials: { twitter: "https://twitter.com", facebook: "https://facebook.com" }
+        socials: {  instagram: "https://www.instagram.com/piotr.zarychta/",twitter: "https://x.com/ZHighlights_" }
     },
 ];
 
