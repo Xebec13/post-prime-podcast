@@ -41,9 +41,9 @@ export const metadata: Metadata = {
 
   // IKONY (Favicon i Apple)
   icons: {
-    icon: "/pp.png",         // Zwykły favicon (karta przeglądarki)
-    shortcut: "/pp.png", 
-    apple: "/pp.png",        // Ikona na iPhone/iPad (Home Screen)
+    icon: "/pp.ico",         // Zwykły favicon (karta przeglądarki)
+    shortcut: "/pp.ico", 
+    apple: "/pp.ico",        // Ikona na iPhone/iPad (Home Screen)
   },
 
   // SOCIAL MEDIA (Facebook, Discord, LinkedIn, iMessage)
