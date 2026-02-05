@@ -31,19 +31,23 @@ A high-performance, fully automated content aggregator built for a leading Polis
 
 ### 🏠 Hero Home Page
 ![Hero Home Page](./public/gifs/hero.gif)
-*The landing experience featuring the live NBA scoreboard, dynamic stats, and the main visual identity of the brand.*
+
+The landing experience featuring the live NBA scoreboard, dynamic stats, and the main visual identity of the brand.*
 
 ### 📰 Last News (Info Bar)
 ![Last News](./public/gifs/post.gif)
-*A high-visibility automated section that highlights the most recent updates and site-wide notifications using custom typography animations.*
+
+A high-visibility automated section that highlights the most recent updates and site-wide notifications using custom typography animations.*
 
 ### 🏀 About Section
 ![About Section](./public/gifs/about.gif)
-*The brand's bio featuring interactive scroll-based animations where background assets (basketball) react to user movement.*
+
+The brand's bio featuring interactive scroll-based animations where background assets (basketball) react to user movement.*
 
 ### 📺 YouTube Feed (YT List)
 ![YT List](./public/gifs/yt.gif)
-*An automated list of the latest 10 podcast episodes fetched directly via YouTube API, ensuring the site is always up-to-date.*
+
+An automated list of the latest 10 podcast episodes fetched directly via YouTube API, ensuring the site is always up-to-date.*
 
 ---
 
@@ -67,7 +71,7 @@ A high-performance, fully automated content aggregator built for a leading Polis
 ## ⚙️ Installation
 
 1. Clone the repository:  
-   `git clone https://github.com/TwojNick/post-prime.git`
+   `git clone https://github.com/Xebec13/post-prime-podcast.git`
 
 2. Install dependencies:
    npm install
