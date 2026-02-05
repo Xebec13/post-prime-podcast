@@ -36,7 +36,7 @@ const hostImgVariants: Variants = {
     hidden: { filter: "brightness(0)", opacity: 1 }, 
     visible: { 
         filter: "brightness(1)", 
-        transition: { duration: 1.5, ease: "easeIn", delay: 0.6 } 
+        transition: { duration: 0.8, ease: "easeIn", delay: 0.2 } 
     }
 };
 

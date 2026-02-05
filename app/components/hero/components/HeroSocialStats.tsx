@@ -92,10 +92,10 @@ export default function HeroSocialStats({ className = "", items }: HeroSocialSta
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activePlatform}
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: -100 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5 }}
                         className="absolute inset-0 flex flex-col justify-center gap-1 size-full px-3 md:px-4"
                     >
                         {/* Tytuł */}

@@ -9,12 +9,12 @@ interface HeroEpVideoProps {
     thumbnail: string;
 }
 
-// Te same warianty co w EpInfo dla spójności (wjazd z lewej)
+
 const videoVariants: Variants = {
-    hidden: { scale:0.7 },
-    visible: { 
-        scale:1,
-        transition: { duration: 0.8, ease: "easeOut" } 
+    hidden: { scale: 0.7 },
+    visible: {
+        scale: 1,
+        transition: { duration: 0.8, ease: "easeOut" }
     }
 };
 
@@ -24,14 +24,14 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
     // 1. Widok Odtwarzacza (po kliknięciu)
     if (isPlaying) {
         return (
-            <motion.div 
+            <motion.div
                 variants={videoVariants}
-                className="size-full overflow-hidden"
+                className="size-full overflow-hidden relative"
             >
                 <iframe
                     width="100%"
                     height="100%"
-                    // src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -47,6 +47,9 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
         <motion.div
             variants={videoVariants}
             onClick={() => setIsPlaying(true)}
+            initial="hidden"             // Stan początkowy
+            whileInView="visible"        // Stan po wejściu w widok
+            viewport={{ once: true }}    // Animuj tylko raz
             // Kontener z tłem
             className="relative size-full overflow-hidden cursor-pointer group"
         >
@@ -62,7 +65,7 @@ export default function HeroEpVideo({ videoId, thumbnail }: HeroEpVideoProps) {
 
             {/* Przycisk Play */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
-                <PlayButton/>
+                <PlayButton />
             </div>
         </motion.div>
     );

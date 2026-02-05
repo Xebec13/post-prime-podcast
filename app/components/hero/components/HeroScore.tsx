@@ -19,7 +19,7 @@ interface HeroScoreProps {
 // Sub-komponent karty meczu (TWÓJ ORYGINALNY STYL)
 const GameCard = ({ game, isResult }: { game: NBAGameData; isResult?: boolean }) => (
     <div className="flex flex-col justify-center items-center gap-1 min-w-30 md:min-w-40 px-2 border-r border-neutral-800 last:border-0 shrink-0">
-        <div className={`text-[9px] md:text-[10px] font-bold uppercase whitespace-nowrap ${game.status === 'FINAL' ? 'text-neutral-500' : 'text-orange-500'}`}>
+        <div className={`text-[9px] md:text-[10px] font-bold uppercase whitespace-nowrap ${game.status === 'FINAL' ? 'text-gray-50' : 'text-orange-500'}`}>
             {game.status}
         </div>
         
@@ -67,8 +67,8 @@ const GameCard = ({ game, isResult }: { game: NBAGameData; isResult?: boolean })
 // Separator (TWOJE STYLE)
 const Separator = ({ label, subLabel }: { label: string; subLabel: string }) => (
     <div className="flex flex-col justify-center items-center min-w-16 md:min-w-20 border-l border-r border-dashed border-neutral-700 bg-neutral-600 px-2 shrink-0">
-        <span className="text-[8px] md:text-[9px] font-black text-orange-300 leading-none mb-1">{label}</span>
-        <span className="text-[9px] md:text-[11px] font-bold text-orange-500">{subLabel}</span>
+        <span className="text-[8px] md:text-[9px] font-black text-white leading-none mb-1">{label}</span>
+        <span className="text-[9px] md:text-[11px] font-bold text-gray-100">{subLabel}</span>
     </div>
 );
 
